@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Jitendra Kothari — Portfolio</title>
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#0f172a; --card:#111a2e; --card2:#152036;
+    --text:#e6eaf2; --muted:#9aa6bd; --line:#22304d;
+    --accent:#6366f1; --accent2:#22d3ee; --chip:#1b2740;
+    --shadow:0 12px 40px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f6f8fc; --bg2:#eef2f9; --card:#ffffff; --card2:#f3f6fc;
+      --text:#0f172a; --muted:#5a6784; --line:#e2e8f2;
+      --accent:#4f46e5; --accent2:#0891b2; --chip:#eef1fb;
+      --shadow:0 12px 40px rgba(30,41,80,.10);
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .accent{color:var(--accent)}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:color-mix(in srgb,var(--bg) 78%,transparent);
+    border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:800;letter-spacing:.5px}
+  .logo span{color:var(--accent)}
+  .navlinks{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+  .navlinks a{transition:color .2s}
+  .navlinks a:hover{color:var(--text)}
+  @media(max-width:640px){.navlinks{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{position:relative;overflow:hidden;padding:96px 0 72px}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;
+    animation:float 14s ease-in-out infinite}
+  .blob.b1{width:420px;height:420px;background:var(--accent);top:-120px;left:-80px}
+  .blob.b2{width:360px;height:360px;background:var(--accent2);bottom:-140px;right:-60px;animation-delay:-5s}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,25px) scale(1.08)}}
+  header .wrap{position:relative;z-index:1}
+  .eyebrow{display:inline-block;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--line);padding:6px 14px;border-radius:999px;
+    background:var(--card);margin-bottom:22px}
+  h1{font-size:clamp(38px,7vw,68px);line-height:1.05;font-weight:800;letter-spacing:-1px}
+  .role{font-size:clamp(16px,2.6vw,22px);color:var(--muted);margin-top:14px;font-weight:500}
+  .lead{max-width:680px;margin-top:22px;color:var(--muted);font-size:17px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:12px;
+    font-weight:600;font-size:15px;transition:transform .18s,box-shadow .18s}
+  .btn.primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 45%,transparent)}
+  .btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--text)}
+  .btn:hover{transform:translateY(-3px)}
+  .btn svg{width:17px;height:17px;fill:currentColor}
+  .contacts{display:flex;flex-wrap:wrap;gap:18px;margin-top:32px;font-size:14px;color:var(--muted)}
+  .contacts a{display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+  .contacts a:hover{color:var(--accent)}
+  .contacts svg{width:15px;height:15px;fill:currentColor;opacity:.8}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:64px 0;border-top:1px solid var(--line)}
+  .kicker{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin:8px 0 8px;letter-spacing:-.5px}
+  .sub{color:var(--muted);max-width:640px;margin-bottom:34px}
+
+  .about p{color:var(--muted);font-size:17px;max-width:760px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .stat b{display:block;font-size:30px;font-weight:800;color:var(--accent)}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative;margin-top:10px}
+  .timeline::before{content:"";position:absolute;left:18px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(var(--accent),var(--accent2))}
+  .tl-item{position:relative;padding:0 0 30px 54px}
+  .tl-item::before{content:"";position:absolute;left:11px;top:5px;width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent)}
+  .tl-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;
+    box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .tl-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .tl-role{font-size:19px;font-weight:700}
+  .tl-co{color:var(--accent);font-weight:600;font-size:15px;margin-top:2px}
+  .tl-card ul{margin:14px 0 0 0;padding-left:18px}
+  .tl-card li{color:var(--muted);font-size:14.5px;margin-bottom:6px}
+
+  /* ---------- WORK GALLERY ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .work{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);transition:transform .22s,border-color .22s}
+  .work:hover{transform:translateY(-6px);border-color:var(--accent)}
+  .ph{aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;color:#fff;text-align:center;padding:16px;position:relative;overflow:hidden}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ph.g1{background:linear-gradient(135deg,#6366f1,#22d3ee)}
+  .ph.g2{background:linear-gradient(135deg,#f43f5e,#f59e0b)}
+  .ph.g3{background:linear-gradient(135deg,#10b981,#06b6d4)}
+  .ph.g4{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
+  .ph.g5{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+  .ph.g6{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+  .ph svg{width:34px;height:34px;fill:rgba(255,255,255,.95)}
+  .ph small{font-size:11px;opacity:.85;font-weight:600;letter-spacing:.5px}
+  .work-body{padding:18px 20px}
+  .work-body h3{font-size:17px;font-weight:700}
+  .work-body p{color:var(--muted);font-size:14px;margin-top:6px}
+  .tag{display:inline-block;margin-top:12px;margin-right:6px;font-size:11px;font-weight:600;
+    color:var(--accent);background:var(--chip);padding:4px 10px;border-radius:999px}
+
+  /* ---------- SKILLS ---------- */
+  .skillgroup{margin-bottom:22px}
+  .skillgroup h4{font-size:15px;font-weight:700;margin-bottom:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--chip);border:1px solid var(--line);color:var(--text);
+    font-size:13.5px;padding:8px 14px;border-radius:10px;transition:transform .15s,background .2s}
+  .chip:hover{transform:translateY(-2px);background:color-mix(in srgb,var(--accent) 16%,var(--chip))}
+
+  /* ---------- EDU / FOOTER ---------- */
+  .edu-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;
+    display:flex;align-items:center;gap:18px;box-shadow:var(--shadow)}
+  .edu-ic{width:52px;height:52px;flex:none;border-radius:14px;background:var(--chip);
+    display:flex;align-items:center;justify-content:center}
+  .edu-ic svg{width:26px;height:26px;fill:var(--accent)}
+  .edu-card h3{font-size:18px;font-weight:700}
+  .edu-card p{color:var(--muted);font-size:14px}
+  footer{padding:56px 0 44px;text-align:center;border-top:1px solid var(--line)}
+  footer h3{font-size:clamp(22px,3.5vw,30px);font-weight:800}
+  footer p{color:var(--muted);margin:10px 0 26px}
+  .fnote{margin-top:34px;font-size:12.5px;color:var(--muted)}
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}
+  .reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .blob{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Yash<span>.</span>K</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="wrap">
+    <span class="eyebrow reveal">Founders Office · Operations &amp; Product</span>
+    <h1 class="reveal d1">Yash Jitendra<br><span class="accent">Kothari</span></h1>
+    <div class="role reveal d2">Mechanical Engineer turned operator — building products, processes, and launches from the founder's seat.</div>
+    <p class="lead reveal d3">I work across design, sourcing, manufacturing, and go-to-market for a fast-scaling consumer electronics brand — running design sprints, standing up assembly SOPs, testing molding methods, and shipping products from prototype to Kickstarter.</p>
+    <div class="cta reveal d3">
+      <a class="btn primary" href="YASH_JITENDRA_KOTHARI_Resume.pdf">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
+        Download Résumé
+      </a>
+      <a class="btn ghost" href="#work">View Work ↓</a>
+    </div>
+    <div class="contacts reveal d4">
+      <a href="mailto:yashkothari010101@gmail.com"><svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.4l8 5 8-5V6H4zm16 3.1-8 5-8-5V18h16V9.1z"/></svg>yashkothari010101@gmail.com</a>
+      <a href="tel:+918169988762"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>+91-8169988762</a>
+      <a><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Mumbai, India</a>
+      <a href="https://www.linkedin.com/"><svg viewBox="0 0 24 24"><path d="M20.4 3H3.6C3 3 2.4 3.5 2.4 4.2v15.6c0 .7.6 1.2 1.2 1.2h16.8c.6 0 1.2-.5 1.2-1.2V4.2c0-.7-.6-1.2-1.2-1.2zM8.1 18.3H5.4V9.7h2.7v8.6zM6.8 8.5A1.6 1.6 0 1 1 6.8 5.3a1.6 1.6 0 0 1 0 3.2zm11.9 9.8h-2.7v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3h-2.7V9.7h2.6v1.2h.1c.4-.7 1.3-1.4 2.6-1.4 2.8 0 3.3 1.8 3.3 4.2v4.6z"/></svg>LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="kicker reveal">About</div>
+    <div class="h2 reveal">Operator across the whole product line</div>
+    <p class="reveal">Executive Assistant / Founders Office professional with 1 year of full-time experience alongside multiple internships, supporting founder-level operations and driving client engagement. I manage complex schedules, draft professional communications, and prepare impactful sales proposals and presentations — while going hands-on with design, manufacturing, and product. Known for enhancing operational efficiency and fostering strong client relationships through effective follow-ups and clear communication.</p>
+    <div class="stats">
+      <div class="stat reveal d1"><b>5+</b><span>Roles across ops, product &amp; manufacturing</span></div>
+      <div class="stat reveal d2"><b>3D</b><span>Printed-mold methods researched &amp; tested</span></div>
+      <div class="stat reveal d3"><b>SOPs</b><span>Assembly &amp; process workflows standardized</span></div>
+      <div class="stat reveal d4"><b>Kickstarter</b><span>New products taken to crowdfunding</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker reveal">Experience</div>
+    <div class="h2 reveal">Where I've worked</div>
+    <p class="sub reveal">From the founder's office of a consumer-electronics brand back to Formula Student manufacturing — a through-line of building and shipping real things.</p>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-role">Founders Office</div>
+          <div class="tl-co">Armor · Consumer Electronics Brand</div>
+          <ul>
+            <li>Support the founder's day-to-day operations, scheduling, and prioritization across product, sourcing, and go-to-market workstreams.</li>
+            <li>Co-manage and drive design sprints across varied product categories, from concept through iteration.</li>
+            <li>Research and test molding methods, including 3D-printed molds, to enable faster, low-cost prototyping.</li>
+            <li>Create SOPs for assembly and production processes to standardize and optimize workflows.</li>
+            <li>Manage inventory and tracking of samples and finished products across the product portfolio.</li>
+            <li>Maintain the product launch tracking system across sourcing, BIS certification, design, packaging, and production timelines.</li>
+            <li>Evaluate vendor quotes against a COGS-based sourcing model to protect target margins and flag pricing risks.</li>
+            <li>Work on new product development for Kickstarter crowdfunding launches.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-role">Founders Office</div>
+          <div class="tl-co">26ideas · AI-first OS</div>
+          <ul>
+            <li>Coordinated the founder's daily agenda, 1:1 meetings, and operational execution across business and personal consulting verticals.</li>
+            <li>Drafted and managed professional communications with clients and stakeholders, ensuring clarity and timely follow-ups.</li>
+            <li>Supported preparation and delivery of sales proposals and client presentations tailored to business needs.</li>
+            <li>Played a key role in fundraising — creating pitch decks, researching potential VCs, and drafting targeted communications.</li>
+            <li>Automated business workflows using n8n, GPT agents, and APIs, saving 24 hours per week.</li>
+            <li>Increased social media engagement by optimizing content pipeline management.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-role">Founder &amp; Mechanical Lead</div>
+          <div class="tl-co">Dimension Six Technologies Pvt · E-Mobility</div>
+          <ul>
+            <li>Designed an EV conversion kit for bicycles delivering a 30% performance boost and 30 km range, focused on cost-effective design.</li>
+            <li>Led a small team of 3 engineers developing the product with an emphasis on low-cost solutions.</li>
+            <li>Planned the sales and launch strategy targeting 100 units in 3 months, defining customer segments and go-to-market.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-role">Chief Manufacturing Officer</div>
+          <div class="tl-co">DJS Racing · Formula-Student Racing Team</div>
+          <ul>
+            <li>Managed end-to-end supply chain — global procurement of materials and parts to meet quality and performance criteria.</li>
+            <li>Implemented PERT/CPM techniques to plan and manage the manufacturing timeline and ensure on-time delivery.</li>
+            <li>Directed the entire manufacturing process — seamless integration and assembly of all vehicle components.</li>
+            <li>Collaborated with sponsors for custom component manufacturing at high-quality standards.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-card">
+          <div class="tl-role">Business Plan Lead</div>
+          <div class="tl-co">DJS Racing · Formula-Student Racing Team</div>
+          <ul>
+            <li>Led a team of 16 in the Business Plan Static Event at Formula Bharat, a national motorsport competition.</li>
+            <li>Developed a business plan around the commercial potential of the team's innovative EV chassis.</li>
+            <li>Prepared detailed financial projections and compliance strategies for the first year of operations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK GALLERY -->
+<section id="work">
+  <div class="wrap">
+    <div class="kicker reveal">Featured Work</div>
+    <div class="h2 reveal">Selected projects</div>
+    <p class="sub reveal">Drop your own photos into the <code>/images</code> folder to replace the placeholders below — filenames are noted on each card.</p>
+
+    <div class="grid">
+      <div class="work reveal">
+        <div class="ph g1"><!-- <img src="images/design-sprints.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5z"/></svg>
+          <small>images/design-sprints.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>Design Sprints</h3>
+          <p>Co-managed and drove design sprints across varied product categories, from concept through iteration.</p>
+          <span class="tag">Product Design</span><span class="tag">Cross-functional</span>
+        </div>
+      </div>
+
+      <div class="work reveal d1">
+        <div class="ph g2"><!-- <img src="images/3d-printed-molds.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.3L18.5 8 12 11.7 5.5 8 12 4.3z"/></svg>
+          <small>images/3d-printed-molds.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>3D-Printed Molds</h3>
+          <p>Researched and tested molding methods, including 3D-printed molds, to enable faster and lower-cost prototyping.</p>
+          <span class="tag">Manufacturing</span><span class="tag">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="work reveal d2">
+        <div class="ph g3"><!-- <img src="images/assembly-sops.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm0 5h18v2H3V9zm0 5h12v2H3v-2zm0 5h12v2H3v-2z"/></svg>
+          <small>images/assembly-sops.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>Assembly SOPs</h3>
+          <p>Created SOPs for assembly and production processes to standardize workflows and optimize output.</p>
+          <span class="tag">Process</span><span class="tag">Operations</span>
+        </div>
+      </div>
+
+      <div class="work reveal">
+        <div class="ph g4"><!-- <img src="images/kickstarter.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          <small>images/kickstarter.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>Kickstarter Products</h3>
+          <p>Worked on new product development for Kickstarter crowdfunding launches, from concept to campaign.</p>
+          <span class="tag">New Product</span><span class="tag">Go-to-market</span>
+        </div>
+      </div>
+
+      <div class="work reveal d1">
+        <div class="ph g5"><!-- <img src="images/ev-kit.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M5 11 7 5h10l2 6h1v7h-2v-2H6v2H4v-7h1zm2.2 0h9.6l-1.3-4H8.5l-1.3 4zM7 14a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm10 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          <small>images/ev-kit.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>EV Conversion Kit</h3>
+          <p>Designed a bicycle EV conversion kit — 30% performance boost, 30 km range — leading a 3-engineer team.</p>
+          <span class="tag">E-Mobility</span><span class="tag">Founder</span>
+        </div>
+      </div>
+
+      <div class="work reveal d2">
+        <div class="ph g6"><!-- <img src="images/formula-student.jpg" alt=""> -->
+          <svg viewBox="0 0 24 24"><path d="M2 12c3-1 5-4 8-4s4 2 6 2 3-1 6-2v4c-3 1-4 2-6 2s-3-2-6-2-5 3-8 4v-4z"/></svg>
+          <small>images/formula-student.jpg</small>
+        </div>
+        <div class="work-body">
+          <h3>Formula Student</h3>
+          <p>Ran end-to-end manufacturing and the winning business-plan case for DJS Racing's electric race car.</p>
+          <span class="tag">Manufacturing</span><span class="tag">Supply Chain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker reveal">Skills</div>
+    <div class="h2 reveal">What I bring</div>
+
+    <div class="skillgroup reveal">
+      <h4>Executive Support &amp; Operations</h4>
+      <div class="chips">
+        <span class="chip">Founder's Office Operations</span>
+        <span class="chip">Cross-Functional Coordination</span>
+        <span class="chip">Multitasking &amp; Prioritization</span>
+        <span class="chip">Inventory &amp; Sample Tracking</span>
+      </div>
+    </div>
+    <div class="skillgroup reveal d1">
+      <h4>Product &amp; Manufacturing</h4>
+      <div class="chips">
+        <span class="chip">Design Sprints</span>
+        <span class="chip">3D-Printed Molds</span>
+        <span class="chip">Assembly SOPs</span>
+        <span class="chip">Prototyping</span>
+        <span class="chip">Supply Chain &amp; Procurement</span>
+        <span class="chip">PERT / CPM Planning</span>
+      </div>
+    </div>
+    <div class="skillgroup reveal d2">
+      <h4>Communication &amp; Client Relations</h4>
+      <div class="chips">
+        <span class="chip">Professional Email Writing</span>
+        <span class="chip">Client Meeting Management</span>
+        <span class="chip">Stakeholder Relationship Building</span>
+        <span class="chip">Follow-ups &amp; Engagement</span>
+      </div>
+    </div>
+    <div class="skillgroup reveal d3">
+      <h4>Sales, Presentation &amp; Tools</h4>
+      <div class="chips">
+        <span class="chip">Sales Proposal Development</span>
+        <span class="chip">Pitch Deck Creation</span>
+        <span class="chip">Advanced MS Office</span>
+        <span class="chip">Google Workspace</span>
+        <span class="chip">Automation (n8n, APIs)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="kicker reveal">Education</div>
+    <div class="h2 reveal">Foundation</div>
+    <div class="edu-card reveal">
+      <div class="edu-ic"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg></div>
+      <div>
+        <h3>SVKM Dwarkadas J. Sanghvi College of Engineering</h3>
+        <p>B.Tech in Mechanical Engineering</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="wrap">
+    <h3 class="reveal">Let's build something.</h3>
+    <p class="reveal">Open to roles in operations, product, and founders-office work.</p>
+    <div class="cta reveal d1" style="justify-content:center">
+      <a class="btn primary" href="mailto:yashkothari010101@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.4l8 5 8-5V6H4z"/></svg>
+        Email Me
+      </a>
+      <a class="btn ghost" href="YASH_JITENDRA_KOTHARI_Resume.pdf">Download Résumé</a>
+    </div>
+    <div class="fnote">© Yash Jitendra Kothari · Mumbai, India</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
