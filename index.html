@@ -100,8 +100,10 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.grid{grid-template-columns:1fr}}
-  .work{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  .work{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
     box-shadow:var(--shadow);transition:transform .22s,border-color .22s}
+  .ph .ext{position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;background:rgba(0,0,0,.35);
+    padding:4px 9px;border-radius:999px;backdrop-filter:blur(4px)}
   .work:hover{transform:translateY(-6px);border-color:var(--accent)}
   .ph{aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:8px;color:#fff;text-align:center;padding:16px;position:relative;overflow:hidden}
@@ -291,81 +293,67 @@
 <section id="work">
   <div class="wrap">
     <div class="kicker reveal">Featured Work</div>
-    <div class="h2 reveal">Selected projects</div>
-    <p class="sub reveal">Drop your own photos into the <code>/images</code> folder to replace the placeholders below — filenames are noted on each card.</p>
+    <div class="h2 reveal">DJS Racing · Formula Student</div>
+    <p class="sub reveal">Building, testing, and competing with DJS Racing's electric formula cars (E19 &amp; E02) — where I served as Chief Manufacturing Officer and Business Plan Lead. Plus the Hook EV conversion kit.</p>
 
     <div class="grid">
       <div class="work reveal">
-        <div class="ph g1"><!-- <img src="images/design-sprints.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5z"/></svg>
-          <small>images/design-sprints.jpg</small>
-        </div>
+        <div class="ph"><img src="images/formula-bharat.jpg" alt="DJS Racing E19 electric formula car with team at Formula Bharat 2025"></div>
         <div class="work-body">
-          <h3>Design Sprints</h3>
-          <p>Co-managed and drove design sprints across varied product categories, from concept through iteration.</p>
-          <span class="tag">Product Design</span><span class="tag">Cross-functional</span>
+          <h3>Formula Bharat 2025 — E19</h3>
+          <p>Competed with DJS Racing's E19 electric formula car; led the business-plan case and end-to-end manufacturing to the grid.</p>
+          <span class="tag">Formula Student</span><span class="tag">Leadership</span>
         </div>
       </div>
 
       <div class="work reveal d1">
-        <div class="ph g2"><!-- <img src="images/3d-printed-molds.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.3L18.5 8 12 11.7 5.5 8 12 4.3z"/></svg>
-          <small>images/3d-printed-molds.jpg</small>
-        </div>
+        <div class="ph"><img src="images/chassis.jpg" alt="Bare formula car chassis with suspension and racing slicks"></div>
         <div class="work-body">
-          <h3>3D-Printed Molds</h3>
-          <p>Researched and tested molding methods, including 3D-printed molds, to enable faster and lower-cost prototyping.</p>
-          <span class="tag">Manufacturing</span><span class="tag">Prototyping</span>
+          <h3>Chassis &amp; Manufacturing</h3>
+          <p>Directed the full build — chassis, suspension, and assembly of every vehicle component — on a PERT/CPM timeline.</p>
+          <span class="tag">Manufacturing</span><span class="tag">Supply Chain</span>
         </div>
       </div>
 
       <div class="work reveal d2">
-        <div class="ph g3"><!-- <img src="images/assembly-sops.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm0 5h18v2H3V9zm0 5h12v2H3v-2zm0 5h12v2H3v-2z"/></svg>
-          <small>images/assembly-sops.jpg</small>
-        </div>
+        <div class="ph"><img src="images/e02-testing.jpg" alt="E02 electric formula car running during night testing"></div>
         <div class="work-body">
-          <h3>Assembly SOPs</h3>
-          <p>Created SOPs for assembly and production processes to standardize workflows and optimize output.</p>
-          <span class="tag">Process</span><span class="tag">Operations</span>
+          <h3>Vehicle Testing — E02</h3>
+          <p>Night dynamics testing of the E02 electric car, validating powertrain and controls ahead of competition.</p>
+          <span class="tag">Testing</span><span class="tag">Powertrain</span>
         </div>
       </div>
 
       <div class="work reveal">
-        <div class="ph g4"><!-- <img src="images/kickstarter.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          <small>images/kickstarter.jpg</small>
-        </div>
+        <div class="ph"><img src="images/cockpit.jpg" alt="Driver seated in the formula car cockpit with LED status halo"></div>
         <div class="work-body">
-          <h3>Kickstarter Products</h3>
-          <p>Worked on new product development for Kickstarter crowdfunding launches, from concept to campaign.</p>
-          <span class="tag">New Product</span><span class="tag">Go-to-market</span>
+          <h3>Driver &amp; Controls</h3>
+          <p>Cockpit and driver-interface integration, including a custom LED status halo for live vehicle telemetry.</p>
+          <span class="tag">Integration</span><span class="tag">Electronics</span>
         </div>
       </div>
 
       <div class="work reveal d1">
-        <div class="ph g5"><!-- <img src="images/ev-kit.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M5 11 7 5h10l2 6h1v7h-2v-2H6v2H4v-7h1zm2.2 0h9.6l-1.3-4H8.5l-1.3 4zM7 14a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm10 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
-          <small>images/ev-kit.jpg</small>
-        </div>
+        <div class="ph"><img src="images/e19-car.jpg" alt="E19 electric formula car in the DJS Racing pit under the team banner"></div>
         <div class="work-body">
-          <h3>EV Conversion Kit</h3>
-          <p>Designed a bicycle EV conversion kit — 30% performance boost, 30 km range — leading a 3-engineer team.</p>
-          <span class="tag">E-Mobility</span><span class="tag">Founder</span>
+          <h3>In the Pits</h3>
+          <p>The E19 in the DJS Racing paddock — prepped for scrutineering and the dynamic events at Formula Bharat.</p>
+          <span class="tag">Formula Student</span><span class="tag">Ops</span>
         </div>
       </div>
 
-      <div class="work reveal d2">
-        <div class="ph g6"><!-- <img src="images/formula-student.jpg" alt=""> -->
-          <svg viewBox="0 0 24 24"><path d="M2 12c3-1 5-4 8-4s4 2 6 2 3-1 6-2v4c-3 1-4 2-6 2s-3-2-6-2-5 3-8 4v-4z"/></svg>
-          <small>images/formula-student.jpg</small>
+      <a class="work reveal d2" href="https://www.hook.bike/about-us" target="_blank" rel="noopener">
+        <div class="ph g5">
+          <span class="ext">hook.bike ↗</span>
+          <svg viewBox="0 0 24 24"><path d="M5 11 7 5h10l2 6h1v7h-2v-2H6v2H4v-7h1zm2.2 0h9.6l-1.3-4H8.5l-1.3 4zM7 14a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm10 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+          <small>E-Mobility</small>
         </div>
         <div class="work-body">
-          <h3>Formula Student</h3>
-          <p>Ran end-to-end manufacturing and the winning business-plan case for DJS Racing's electric race car.</p>
-          <span class="tag">Manufacturing</span><span class="tag">Supply Chain</span>
+          <h3>Hook — EV Conversion Kit</h3>
+          <p>Bicycle EV conversion kit (Dimension Six) — 30% performance boost and 30 km range, built with a 3-engineer team.</p>
+          <span class="tag">E-Mobility</span><span class="tag">Founder</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
