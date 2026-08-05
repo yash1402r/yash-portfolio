@@ -134,6 +134,20 @@
   .persona .pn{font-weight:700;font-size:15px;margin-top:11px}
   .persona .pr{font-size:12.5px;color:var(--accent);margin:2px 0 13px}
 
+  /* ---------- CAD DRAWINGS STRIP ---------- */
+  .cadstrip{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory}
+  .cadstrip::-webkit-scrollbar{height:8px}
+  .cadstrip::-webkit-scrollbar-track{background:transparent}
+  .cadstrip::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  .cadcard{flex:0 0 300px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .cadcard:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .cadcard .cimg{height:200px;display:flex;align-items:center;justify-content:center;background:#fff;padding:12px}
+  .cadcard .cimg img{max-width:100%;max-height:100%;object-fit:contain}
+  .cadcard .cname{padding:11px 14px;font-size:13.5px;font-weight:700;color:#0f172a;
+    background:#fff;border-top:1px solid #eef1f7}
+  .cadcard .cname span{display:block;font-weight:500;font-size:11.5px;color:#64748b;margin-top:1px}
+
   /* ---------- SKILLS ---------- */
   .skillgroup{margin-bottom:22px}
   .skillgroup h4{font-size:15px;font-weight:700;margin-bottom:12px}
@@ -378,20 +392,20 @@
       </div>
 
       <div class="work reveal d1">
-        <div class="ph"><img src="images/hook-module.jpg" alt="Hook Daily drive module side view showing branding"></div>
+        <div class="ph"><img src="images/hook-drivetrain.jpg" alt="Bicycle drivetrain with the Hook kit installed"></div>
         <div class="work-body">
-          <h3>Drive Module</h3>
-          <p>Self-contained motor, battery, and controller in one clamp-on unit — the whole conversion in a single package.</p>
-          <span class="tag">Mechanical Design</span><span class="tag">CAD</span>
+          <h3>Bicycle Integration</h3>
+          <p>Retrofits onto a standard bike — chain, crank, and wheels untouched, so any cycle becomes electric.</p>
+          <span class="tag">Retrofit</span><span class="tag">E-Mobility</span>
         </div>
       </div>
 
       <div class="work reveal d2">
-        <div class="ph"><img src="images/hook-mount.jpg" alt="Hook Daily kit three-quarter view on the bicycle frame"></div>
+        <div class="ph"><img src="images/hook-mount.jpg" alt="Hook Daily drive module three-quarter view on the bicycle frame"></div>
         <div class="work-body">
-          <h3>Frame Mounting</h3>
-          <p>Pipe-clamp mounting geometry engineered to fit varied frame diameters while holding drive loads securely.</p>
-          <span class="tag">DFM</span><span class="tag">Prototyping</span>
+          <h3>Drive Module</h3>
+          <p>Self-contained motor, battery, and controller in one clamp-on unit, engineered to fit varied frame diameters.</p>
+          <span class="tag">Mechanical Design</span><span class="tag">CAD</span>
         </div>
       </div>
 
@@ -403,6 +417,18 @@
           <span class="tag">Mechanism</span><span class="tag">Powertrain</span>
         </div>
       </div>
+    </div>
+
+    <div class="kicker reveal" style="margin-top:44px">CAD &amp; Engineering</div>
+    <div class="h2 reveal" style="font-size:clamp(20px,3vw,26px)">Selected production drawings</div>
+    <p class="sub reveal">Manufacturing drawings I made in SolidWorks — orthographic and isometric views, tolerances, and shop notes. Tap any sheet to open it full-size. Scroll&nbsp;→</p>
+    <div class="cadstrip reveal">
+      <a class="cadcard" href="images/cad-couplers.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-couplers.jpg" alt="Motor couplers engineering drawing"></div><div class="cname">Motor Couplers<span>Turned part · chromium plated</span></div></a>
+      <a class="cadcard" href="images/cad-roller.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-roller.jpg" alt="Motor PU roller engineering drawing"></div><div class="cname">Drive Roller<span>PU roller · press fit</span></div></a>
+      <a class="cadcard" href="images/cad-mount.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-mount.jpg" alt="Motor sides mount engineering drawing"></div><div class="cname">Motor Side Mount<span>Sheet-metal bracket</span></div></a>
+      <a class="cadcard" href="images/cad-sidebody.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-sidebody.jpg" alt="Side body left and right engineering drawing"></div><div class="cname">Side Bodies (L&amp;R)<span>Folded sheet-metal housing</span></div></a>
+      <a class="cadcard" href="images/cad-support.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-support.jpg" alt="Support block and rod engineering drawing"></div><div class="cname">Support Block &amp; Rod<span>M6 tapped · qty 2</span></div></a>
+      <a class="cadcard" href="images/cad-spring.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-spring.jpg" alt="Compression spring engineering drawing"></div><div class="cname">Compression Spring<span>1.2 / 1.6 mm wire</span></div></a>
     </div>
   </div>
 </section>
