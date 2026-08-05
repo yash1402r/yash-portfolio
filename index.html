@@ -122,6 +122,18 @@
   .tag{display:inline-block;margin-top:12px;margin-right:6px;font-size:11px;font-weight:600;
     color:var(--accent);background:var(--chip);padding:4px 10px;border-radius:999px}
 
+  /* ---------- PERSONA GRID (26ideas) ---------- */
+  .banner{width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);
+    margin-bottom:26px;display:block}
+  .personas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:760px){.personas{grid-template-columns:repeat(2,1fr)}}
+  .persona{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    text-align:center;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .persona:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .persona img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#000}
+  .persona .pn{font-weight:700;font-size:15px;margin-top:11px}
+  .persona .pr{font-size:12.5px;color:var(--accent);margin:2px 0 13px}
+
   /* ---------- SKILLS ---------- */
   .skillgroup{margin-bottom:22px}
   .skillgroup h4{font-size:15px;font-weight:700;margin-bottom:12px}
@@ -164,6 +176,7 @@
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
       <a href="#hook">Hook</a>
+      <a href="#ai">AI</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
@@ -390,6 +403,26 @@
           <span class="tag">Mechanism</span><span class="tag">Powertrain</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 26IDEAS · AI COFOUNDER -->
+<section id="ai">
+  <div class="wrap">
+    <div class="kicker reveal">26ideas · AI-first OS</div>
+    <div class="h2 reveal">AI Cofounder — a virtual founding team</div>
+    <p class="sub reveal">At 26ideas I helped design and build "AI Cofounder": a team of specialist AI agents, each with its own visual identity, backstory, and voice. I authored the expert personas and the behaviour behind them — turning raw GPT agents into a coherent, on-brand founding team.</p>
+    <img class="banner reveal" src="images/ai-team.jpg" alt="AI Cofounder — the full team of AI expert agents">
+    <div class="personas">
+      <div class="persona reveal"><img src="images/ai-noah.jpg" alt="Noah — AI Business Plan expert"><div class="pn">Noah</div><div class="pr">Business Plan</div></div>
+      <div class="persona reveal d1"><img src="images/ai-felix.jpg" alt="Felix — AI Funding expert"><div class="pn">Felix</div><div class="pr">Funding</div></div>
+      <div class="persona reveal d2"><img src="images/ai-skye.jpg" alt="Skye — AI Sales expert"><div class="pn">Skye</div><div class="pr">Sales</div></div>
+      <div class="persona reveal d3"><img src="images/ai-marc.jpg" alt="Marc — AI Marketing expert"><div class="pn">Marc</div><div class="pr">Marketing</div></div>
+      <div class="persona reveal"><img src="images/ai-percy.jpg" alt="Percy — AI Product expert"><div class="pn">Percy</div><div class="pr">Product</div></div>
+      <div class="persona reveal d1"><img src="images/ai-ruby.jpg" alt="Ruby — AI Research expert"><div class="pn">Ruby</div><div class="pr">Research</div></div>
+      <div class="persona reveal d2"><img src="images/ai-holly.jpg" alt="Holly — AI Hiring expert"><div class="pn">Holly</div><div class="pr">Hiring</div></div>
+      <div class="persona reveal d3"><img src="images/ai-lily.jpg" alt="Lily — AI Legal expert"><div class="pn">Lily</div><div class="pr">Legal</div></div>
     </div>
   </div>
 </section>
