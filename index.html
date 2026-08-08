@@ -20,7 +20,8 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);
-    font-family:Georgia,"Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    font-family:Georgia,"Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden}
   .wrap{max-width:1060px;margin:0 auto;padding:0 34px}
   .sc{font-variant:small-caps;letter-spacing:1.5px}
   a{color:inherit}
@@ -189,6 +190,28 @@
   .lb-count{font-size:11px;letter-spacing:1.5px;font-variant:small-caps;color:var(--faint);margin-top:20px}
   @media(max-width:560px){.lb-nav{display:none}.lb-body{padding:22px 20px 28px}}
   @media(prefers-reduced-motion:reduce){.lb-panel{transition:none}}
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:600px){
+    .wrap{padding:0 18px}
+    .top,.dateline{font-size:9px;letter-spacing:.5px;gap:8px}
+    .mast{padding:14px 0 10px}
+    .mast h1{font-size:clamp(28px,8.4vw,96px);letter-spacing:.2px;line-height:1.02}
+    .mast .sub{font-size:9.5px;letter-spacing:2px}
+    header .hl{font-size:clamp(25px,7vw,54px)}
+    header .dek{font-size:16px}
+    .cols{columns:1;column-rule:0;text-align:left}
+    .cols p:first-child::first-letter{font-size:46px}
+    .actions{gap:10px}
+    .btn{padding:9px 15px}
+    .rec{grid-template-columns:1fr;gap:6px}
+    .rec h3{font-size:21px}
+    .rec li{font-size:13.5px}
+    .shead{letter-spacing:2px;font-size:12px}
+    .art h3,.plate h4{font-size:19px}
+    .lb-meta div{flex-basis:100%}
+    .lb h3{font-size:24px}
+  }
 </style>
 </head>
 <body>
@@ -559,6 +582,10 @@
     else if(e.key==='ArrowLeft')go(-1);
     else if(e.key==='ArrowRight')go(1);
   });
+  // swipe to navigate on touch
+  let tsx=null;
+  lb.addEventListener('touchstart',(e)=>{tsx=e.changedTouches[0].clientX;},{passive:true});
+  lb.addEventListener('touchend',(e)=>{if(tsx==null)return;const dx=e.changedTouches[0].clientX-tsx;if(Math.abs(dx)>50)go(dx<0?1:-1);tsx=null;},{passive:true});
 </script>
 </body>
 </html>
