@@ -3,180 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yash Jitendra Kothari — Portfolio</title>
+<title>Yash Kothari — Portfolio</title>
 <style>
   :root{
-    --bg:#0b1020; --bg2:#0f172a; --card:#111a2e; --card2:#152036;
-    --text:#e6eaf2; --muted:#9aa6bd; --line:#22304d;
-    --accent:#6366f1; --accent2:#22d3ee; --chip:#1b2740;
-    --shadow:0 12px 40px rgba(0,0,0,.35);
+    --paper:#f6f2e9; --card:#fffdf7; --ink:#1a1712; --dim:#5c554a; --faint:#8b8375;
+    --rule:#cfc6b5; --line:#1a1712; --acc:#8f2d1e;
+    --ease:cubic-bezier(.23,1,.32,1);
   }
-  @media (prefers-color-scheme: light){
-    :root{
-      --bg:#f6f8fc; --bg2:#eef2f9; --card:#ffffff; --card2:#f3f6fc;
-      --text:#0f172a; --muted:#5a6784; --line:#e2e8f2;
-      --accent:#4f46e5; --accent2:#0891b2; --chip:#eef1fb;
-      --shadow:0 12px 40px rgba(30,41,80,.10);
-    }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#14120e; --card:#191713; --ink:#ece6d8; --dim:#a89f8d; --faint:#7d7565;
+      --rule:#38332a; --line:#ece6d8; --acc:#e0776a; }
   }
+  :root[data-theme="dark"]{ --paper:#14120e; --card:#191713; --ink:#ece6d8; --dim:#a89f8d; --faint:#7d7565; --rule:#38332a; --line:#ece6d8; --acc:#e0776a; }
+  :root[data-theme="light"]{ --paper:#f6f2e9; --card:#fffdf7; --ink:#1a1712; --dim:#5c554a; --faint:#8b8375; --rule:#cfc6b5; --line:#1a1712; --acc:#8f2d1e; }
+
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--bg); color:var(--text); line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-  .accent{color:var(--accent)}
+  body{background:var(--paper);color:var(--ink);
+    font-family:Georgia,"Times New Roman",serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 34px}
+  .sc{font-variant:small-caps;letter-spacing:1.5px}
+  a{color:inherit}
+  img{display:block}
 
-  /* ---------- NAV ---------- */
-  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-    background:color-mix(in srgb,var(--bg) 78%,transparent);
-    border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-weight:800;letter-spacing:.5px}
-  .logo span{color:var(--accent)}
-  .navlinks{display:flex;gap:22px;font-size:14px;color:var(--muted)}
-  .navlinks a{transition:color .2s}
-  .navlinks a:hover{color:var(--text)}
-  @media(max-width:640px){.navlinks{display:none}}
+  /* index bar */
+  nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:46px}
+  nav .name{font-weight:700;font-size:15px;font-variant:small-caps;letter-spacing:1px}
+  nav .lnk{display:flex;gap:20px;font-size:12px;font-variant:small-caps;letter-spacing:1.5px}
+  nav .lnk a{color:var(--dim);text-decoration:none;transition:color .2s}
+  nav .lnk a:hover{color:var(--acc)}
+  @media(max-width:680px){nav .lnk{display:none}}
 
-  /* ---------- HERO ---------- */
-  header{position:relative;overflow:hidden;padding:96px 0 72px}
-  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;
-    animation:float 14s ease-in-out infinite}
-  .blob.b1{width:420px;height:420px;background:var(--accent);top:-120px;left:-80px}
-  .blob.b2{width:360px;height:360px;background:var(--accent2);bottom:-140px;right:-60px;animation-delay:-5s}
-  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,25px) scale(1.08)}}
-  header .wrap{position:relative;z-index:1}
-  .eyebrow{display:inline-block;font-size:13px;letter-spacing:2px;text-transform:uppercase;
-    color:var(--accent);border:1px solid var(--line);padding:6px 14px;border-radius:999px;
-    background:var(--card);margin-bottom:22px}
-  h1{font-size:clamp(38px,7vw,68px);line-height:1.05;font-weight:800;letter-spacing:-1px}
-  .role{font-size:clamp(16px,2.6vw,22px);color:var(--muted);margin-top:14px;font-weight:500}
-  .lead{max-width:680px;margin-top:22px;color:var(--muted);font-size:17px}
-  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:12px;
-    font-weight:600;font-size:15px;transition:transform .18s,box-shadow .18s}
-  .btn.primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 45%,transparent)}
-  .btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--text)}
-  .btn:hover{transform:translateY(-3px)}
-  .btn svg{width:17px;height:17px;fill:currentColor}
-  .contacts{display:flex;flex-wrap:wrap;gap:18px;margin-top:32px;font-size:14px;color:var(--muted)}
-  .contacts a{display:inline-flex;align-items:center;gap:7px;transition:color .2s}
-  .contacts a:hover{color:var(--accent)}
-  .contacts svg{width:15px;height:15px;fill:currentColor;opacity:.8}
+  /* masthead */
+  .top{display:flex;justify-content:space-between;font-size:11px;letter-spacing:2px;
+    font-variant:small-caps;padding:12px 0;color:var(--dim)}
+  .mast{text-align:center;border-top:4px double var(--line);border-bottom:4px double var(--line);padding:16px 0 12px}
+  .mast h1{font-size:clamp(44px,9vw,96px);font-weight:800;letter-spacing:1px;line-height:.98;font-variant:small-caps}
+  .mast .sub{font-size:12px;letter-spacing:5px;font-variant:small-caps;margin-top:8px;color:var(--dim)}
+  .dateline{display:flex;justify-content:space-between;font-size:11px;letter-spacing:1.5px;
+    font-variant:small-caps;border-bottom:1px solid var(--line);padding:8px 0;color:var(--dim)}
 
-  /* ---------- SECTIONS ---------- */
-  section{padding:64px 0;border-top:1px solid var(--line)}
-  .kicker{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:700}
-  .h2{font-size:clamp(26px,4vw,36px);font-weight:800;margin:8px 0 8px;letter-spacing:-.5px}
-  .sub{color:var(--muted);max-width:640px;margin-bottom:34px}
+  /* lead article */
+  header .hl{font-size:clamp(30px,5.2vw,54px);font-weight:800;line-height:1.04;text-align:center;
+    letter-spacing:-.5px;margin:26px 0 0}
+  header .dek{text-align:center;font-style:italic;font-size:18px;color:var(--dim);margin:12px auto 0;max-width:760px}
+  .cols{columns:3;column-gap:28px;column-rule:1px solid var(--rule);margin-top:24px;font-size:14.5px;line-height:1.62;text-align:justify}
+  .cols p{margin-bottom:10px;-webkit-column-break-inside:avoid}
+  .cols p:first-child::first-letter{font-size:56px;float:left;line-height:.78;padding:6px 9px 0 0;font-weight:800}
+  @media(max-width:860px){.cols{columns:2}}
+  @media(max-width:560px){.cols{columns:1}}
+  .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:26px 0 4px}
+  .btn{border:1.5px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;
+    padding:10px 20px;font-size:12px;font-variant:small-caps;letter-spacing:1.5px;transition:background .2s,color .2s}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.solid{background:var(--ink);color:var(--paper)}
+  .btn.solid:hover{background:var(--acc);border-color:var(--acc)}
 
-  .about p{color:var(--muted);font-size:17px;max-width:760px}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
-  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-  .stat b{display:block;font-size:30px;font-weight:800;color:var(--accent)}
-  .stat span{font-size:13px;color:var(--muted)}
+  /* section header */
+  section{padding:30px 0}
+  .divider{border-top:4px double var(--line);margin-top:8px}
+  .shead{text-align:center;font-size:13px;letter-spacing:4px;font-variant:small-caps;color:var(--dim);
+    border-bottom:1px solid var(--line);padding:16px 0 10px;margin-bottom:24px}
+  .shead b{color:var(--ink);font-weight:700}
 
-  /* ---------- TIMELINE ---------- */
-  .timeline{position:relative;margin-top:10px}
-  .timeline::before{content:"";position:absolute;left:18px;top:6px;bottom:6px;width:2px;
-    background:linear-gradient(var(--accent),var(--accent2))}
-  .tl-item{position:relative;padding:0 0 30px 54px}
-  .tl-item::before{content:"";position:absolute;left:11px;top:5px;width:16px;height:16px;border-radius:50%;
-    background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent)}
-  .tl-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;
-    box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
-  .tl-card:hover{transform:translateY(-4px);border-color:var(--accent)}
-  .tl-role{font-size:19px;font-weight:700}
-  .tl-co{color:var(--accent);font-weight:600;font-size:15px;margin-top:2px}
-  .tl-card ul{margin:14px 0 0 0;padding-left:18px}
-  .tl-card li{color:var(--muted);font-size:14.5px;margin-bottom:6px}
+  /* EXPERIENCE — ruled records */
+  .rec{display:grid;grid-template-columns:1fr 2.1fr;gap:26px;padding:20px 0;border-bottom:1px solid var(--rule)}
+  .rec:last-child{border-bottom:0}
+  .rec .co{font-size:12px;letter-spacing:1.5px;font-variant:small-caps;color:var(--acc);font-weight:700}
+  .rec h3{font-size:25px;font-weight:800;line-height:1.1;margin:4px 0 8px}
+  .rec .tenure{font-size:12px;font-style:italic;color:var(--faint)}
+  .rec ul{list-style:none}
+  .rec li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14px;line-height:1.55;color:#3f3a32}
+  :root[data-theme="dark"] .rec li,@media(prefers-color-scheme:dark){}
+  .rec li{color:var(--dim)}
+  .rec li::before{content:"—";position:absolute;left:0;color:var(--acc)}
+  @media(max-width:680px){.rec{grid-template-columns:1fr;gap:8px}}
 
-  /* ---------- WORK GALLERY ---------- */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
-  .work{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
-    box-shadow:var(--shadow);transition:transform .22s,border-color .22s}
-  .ph .ext{position:absolute;top:12px;right:12px;font-size:11px;font-weight:700;background:rgba(0,0,0,.35);
-    padding:4px 9px;border-radius:999px;backdrop-filter:blur(4px)}
-  .work:hover{transform:translateY(-6px);border-color:var(--accent)}
-  .ph{aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:8px;color:#fff;text-align:center;padding:16px;position:relative;overflow:hidden}
-  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .ph.g1{background:linear-gradient(135deg,#6366f1,#22d3ee)}
-  .ph.g2{background:linear-gradient(135deg,#f43f5e,#f59e0b)}
-  .ph.g3{background:linear-gradient(135deg,#10b981,#06b6d4)}
-  .ph.g4{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
-  .ph.g5{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
-  .ph.g6{background:linear-gradient(135deg,#f59e0b,#ef4444)}
-  .ph svg{width:34px;height:34px;fill:rgba(255,255,255,.95)}
-  .ph small{font-size:11px;opacity:.85;font-weight:600;letter-spacing:.5px}
-  .work-body{padding:18px 20px}
-  .work-body h3{font-size:17px;font-weight:700}
-  .work-body p{color:var(--muted);font-size:14px;margin-top:6px}
-  .tag{display:inline-block;margin-top:12px;margin-right:6px;font-size:11px;font-weight:600;
-    color:var(--accent);background:var(--chip);padding:4px 10px;border-radius:999px}
+  /* FEATURE CARDS (Hook, AI, Work) */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:540px){.grid{grid-template-columns:1fr}}
+  .art .im{aspect-ratio:3/2;overflow:hidden;border:1px solid var(--line);background:#ddd}
+  .art .im img{width:100%;height:100%;object-fit:cover;
+    transition:filter .5s var(--ease),transform .5s var(--ease)}
+  .art .cap{font-size:10px;letter-spacing:1px;font-variant:small-caps;color:var(--faint);margin-top:6px}
+  .art h3{font-size:21px;font-weight:800;line-height:1.12;margin:6px 0 7px;border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .art p{font-size:13.5px;line-height:1.55;color:var(--dim)}
+  .art p .sc{font-weight:700;color:var(--ink)}
 
-  /* ---------- PERSONA GRID (26ideas) ---------- */
-  .banner{width:100%;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow);
-    margin-bottom:26px;display:block}
-  .personas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  @media(max-width:760px){.personas{grid-template-columns:repeat(2,1fr)}}
-  .persona{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
-    text-align:center;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
-  .persona:hover{transform:translateY(-4px);border-color:var(--accent)}
-  .persona img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#000}
-  .persona .pn{font-weight:700;font-size:15px;margin-top:11px}
-  .persona .pr{font-size:12.5px;color:var(--accent);margin:2px 0 13px}
+  .lead-para{max-width:760px;margin:0 auto 26px;text-align:center;font-size:16px;font-style:italic;color:var(--dim)}
+  .lead-para a{color:var(--acc)}
 
-  /* ---------- CAD DRAWINGS STRIP ---------- */
-  .cadstrip{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory}
-  .cadstrip::-webkit-scrollbar{height:8px}
-  .cadstrip::-webkit-scrollbar-track{background:transparent}
-  .cadstrip::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
-  .cadcard{flex:0 0 300px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);
-    border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
-  .cadcard:hover{transform:translateY(-4px);border-color:var(--accent)}
-  .cadcard .cimg{height:200px;display:flex;align-items:center;justify-content:center;background:#fff;padding:12px}
-  .cadcard .cimg img{max-width:100%;max-height:100%;object-fit:contain}
-  .cadcard .cname{padding:11px 14px;font-size:13.5px;font-weight:700;color:#0f172a;
-    background:#fff;border-top:1px solid #eef1f7}
-  .cadcard .cname span{display:block;font-weight:500;font-size:11.5px;color:#64748b;margin-top:1px}
+  /* CAD PLATES strip */
+  .plates{display:flex;gap:20px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory}
+  .plates::-webkit-scrollbar{height:8px}
+  .plates::-webkit-scrollbar-thumb{background:var(--rule);border-radius:8px}
+  .plate{flex:0 0 300px;scroll-snap-align:start}
+  .plate .pim{height:200px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:12px}
+  .plate .pim img{max-width:100%;max-height:100%;object-fit:contain}
+  .plate .pc{border-bottom:1px solid var(--rule);padding-top:8px}
+  .plate .pl{font-size:10px;letter-spacing:1px;font-variant:small-caps;color:var(--faint)}
+  .plate h4{font-size:16px;font-weight:800;margin:2px 0 6px}
+  .plate span{font-size:12px;font-style:italic;color:var(--dim)}
 
-  /* ---------- SKILLS ---------- */
-  .skillgroup{margin-bottom:22px}
-  .skillgroup h4{font-size:15px;font-weight:700;margin-bottom:12px}
-  .chips{display:flex;flex-wrap:wrap;gap:10px}
-  .chip{background:var(--chip);border:1px solid var(--line);color:var(--text);
-    font-size:13.5px;padding:8px 14px;border-radius:10px;transition:transform .15s,background .2s}
-  .chip:hover{transform:translateY(-2px);background:color-mix(in srgb,var(--accent) 16%,var(--chip))}
+  /* PERSONA cast */
+  .banner{width:100%;border:1px solid var(--line);margin-bottom:24px;transition:filter .6s var(--ease)}
+  .cast{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:720px){.cast{grid-template-columns:repeat(2,1fr)}}
+  .figp{text-align:center}
+  .figp .im{aspect-ratio:1/1;overflow:hidden;border:1px solid var(--line);background:#111}
+  .figp .im img{width:100%;height:100%;object-fit:cover;transition:filter .5s var(--ease)}
+  .figp .pn{font-size:16px;font-weight:800;margin-top:9px}
+  .figp .pr{font-size:11px;letter-spacing:1px;font-variant:small-caps;color:var(--acc)}
 
-  /* ---------- EDU / FOOTER ---------- */
-  .edu-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;
-    display:flex;align-items:center;gap:18px;box-shadow:var(--shadow)}
-  .edu-ic{width:52px;height:52px;flex:none;border-radius:14px;background:var(--chip);
-    display:flex;align-items:center;justify-content:center}
-  .edu-ic svg{width:26px;height:26px;fill:var(--accent)}
-  .edu-card h3{font-size:18px;font-weight:700}
-  .edu-card p{color:var(--muted);font-size:14px}
-  footer{padding:56px 0 44px;text-align:center;border-top:1px solid var(--line)}
-  footer h3{font-size:clamp(22px,3.5vw,30px);font-weight:800}
-  footer p{color:var(--muted);margin:10px 0 26px}
-  .fnote{margin-top:34px;font-size:12.5px;color:var(--muted)}
+  /* SKILLS index */
+  .index{columns:2;column-gap:40px}
+  @media(max-width:640px){.index{columns:1}}
+  .idxg{break-inside:avoid;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .idxg h4{font-size:13px;letter-spacing:1.5px;font-variant:small-caps;font-weight:700;color:var(--acc);margin-bottom:5px}
+  .idxg p{font-size:14.5px;line-height:1.5}
 
-  /* ---------- REVEAL ANIMATION ---------- */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  /* EDUCATION */
+  .edu{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:12px}
+  .edu h3{font-size:22px;font-weight:800}
+  .edu p{font-size:14px;font-style:italic;color:var(--dim)}
+  .edu .yr{font-size:12px;font-variant:small-caps;letter-spacing:1.5px;color:var(--faint)}
+
+  /* FOOTER colophon */
+  footer{border-top:4px double var(--line);margin-top:30px;text-align:center;padding:34px 0 46px}
+  footer .fh{font-size:clamp(22px,3.4vw,30px);font-weight:800}
+  footer .fd{font-style:italic;color:var(--dim);margin:8px 0 20px}
+  footer .col{font-size:11px;letter-spacing:1.5px;font-variant:small-caps;color:var(--faint);margin-top:22px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
   .reveal.in{opacity:1;transform:none}
-  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}
-  .reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+  .reveal.d1{transition-delay:.07s}.reveal.d2{transition-delay:.14s}.reveal.d3{transition-delay:.21s}
+  /* Editorial grayscale that blooms to colour on hover — only where a real pointer exists,
+     so touch/mobile always sees full colour. */
+  @media (hover:hover) and (pointer:fine){
+    .art .im img,.figp .im img{filter:grayscale(1) contrast(1.05)}
+    .banner{filter:grayscale(1) contrast(1.04)}
+    .art:hover .im img{filter:none;transform:scale(1.03)}
+    .figp:hover .im img{filter:none}
+    .banner:hover{filter:none}
+  }
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
-    .blob{animation:none}
+    .art .im img,.figp .im img,.banner{transition:none}
   }
 </style>
 </head>
@@ -184,359 +160,214 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">Yash<span>.</span>K</div>
-    <div class="navlinks">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#hook">Hook</a>
-      <a href="#ai">AI</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <span class="name">Yash Kothari</span>
+    <span class="lnk">
+      <a href="#work">Work</a><a href="#hook">Hook</a><a href="#ai">AI</a>
+      <a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </span>
   </div>
 </nav>
 
-<!-- HERO -->
-<header>
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="wrap">
-    <span class="eyebrow reveal">Founders Office · Operations &amp; Product</span>
-    <h1 class="reveal d1">Yash Jitendra<br><span class="accent">Kothari</span></h1>
-    <div class="role reveal d2">Mechanical Engineer turned operator — building products, processes, and launches from the founder's seat.</div>
-    <p class="lead reveal d3">I work across design, sourcing, manufacturing, and go-to-market for a fast-scaling consumer electronics brand — running design sprints, standing up assembly SOPs, testing molding methods, and shipping products from prototype to Kickstarter.</p>
-    <div class="cta reveal d3">
-      <a class="btn primary" href="YASH_JITENDRA_KOTHARI_Resume.pdf">
-        <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
-        Download Résumé
-      </a>
-      <a class="btn ghost" href="#work">View Work ↓</a>
-    </div>
-    <div class="contacts reveal d4">
-      <a href="mailto:yashkothari010101@gmail.com"><svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.4l8 5 8-5V6H4zm16 3.1-8 5-8-5V18h16V9.1z"/></svg>yashkothari010101@gmail.com</a>
-      <a href="tel:+918169988762"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>+91-8169988762</a>
-      <a><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Mumbai, India</a>
-      <a href="https://www.linkedin.com/"><svg viewBox="0 0 24 24"><path d="M20.4 3H3.6C3 3 2.4 3.5 2.4 4.2v15.6c0 .7.6 1.2 1.2 1.2h16.8c.6 0 1.2-.5 1.2-1.2V4.2c0-.7-.6-1.2-1.2-1.2zM8.1 18.3H5.4V9.7h2.7v8.6zM6.8 8.5A1.6 1.6 0 1 1 6.8 5.3a1.6 1.6 0 0 1 0 3.2zm11.9 9.8h-2.7v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3h-2.7V9.7h2.6v1.2h.1c.4-.7 1.3-1.4 2.6-1.4 2.8 0 3.3 1.8 3.3 4.2v4.6z"/></svg>LinkedIn</a>
-    </div>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <div class="top"><span>No. 01</span><span>Portfolio Edition</span><span>Price · Your Attention</span></div>
+  <div class="mast">
+    <h1>Yash Kothari</h1>
+    <div class="sub">Engineer · Operator · Founder's Office</div>
   </div>
-</header>
+  <div class="dateline"><span>Mumbai, India</span><span>Established DJS Racing</span><span>Anno MMXXVI</span></div>
 
-<!-- ABOUT -->
-<section id="about" class="about">
-  <div class="wrap">
-    <div class="kicker reveal">About</div>
-    <div class="h2 reveal">Operator across the whole product line</div>
-    <p class="reveal">Executive Assistant / Founders Office professional with 1 year of full-time experience alongside multiple internships, supporting founder-level operations and driving client engagement. I manage complex schedules, draft professional communications, and prepare impactful sales proposals and presentations — while going hands-on with design, manufacturing, and product. Known for enhancing operational efficiency and fostering strong client relationships through effective follow-ups and clear communication.</p>
-    <div class="stats">
-      <div class="stat reveal d1"><b>5+</b><span>Roles across ops, product &amp; manufacturing</span></div>
-      <div class="stat reveal d2"><b>3D</b><span>Printed-mold methods researched &amp; tested</span></div>
-      <div class="stat reveal d3"><b>SOPs</b><span>Assembly &amp; process workflows standardized</span></div>
-      <div class="stat reveal d4"><b>Kickstarter</b><span>New products taken to crowdfunding</span></div>
+  <!-- LEAD ARTICLE -->
+  <header>
+    <div class="hl">Builds Products, Processes &amp; Launches — From CAD to Running Machine</div>
+    <div class="dek">A mechanical engineer turned operator, at home on the shop floor and in the founder's office alike.</div>
+    <div class="cols">
+      <p>Yash Kothari works where design meets manufacturing meets go-to-market. From the founder's office of a fast-scaling consumer-electronics brand, he co-manages design sprints, stands up assembly SOPs, and tests molding methods — including 3D-printed molds — to move products from concept to shelf.</p>
+      <p>His record runs on hardware. As Chief Manufacturing Officer at DJS Racing he directed the end-to-end build of an electric formula car, and as founder of Hook he designed a clamp-on kit that turns any bicycle electric — a 30% performance boost and 30&nbsp;km of range.</p>
+      <p>Earlier, in the founder's office at 26ideas, he authored a team of specialist AI agents and automated business workflows. The method is consistent throughout: organise the chaos, build the system, ship the hardware — then write the SOP so it happens again.</p>
     </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <div class="kicker reveal">Experience</div>
-    <div class="h2 reveal">Where I've worked</div>
-    <p class="sub reveal">From the founder's office of a consumer-electronics brand back to Formula Student manufacturing — a through-line of building and shipping real things.</p>
-
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-card">
-          <div class="tl-role">Founders Office</div>
-          <div class="tl-co">Armor · Consumer Electronics Brand</div>
-          <ul>
-            <li>Support the founder's day-to-day operations, scheduling, and prioritization across product, sourcing, and go-to-market workstreams.</li>
-            <li>Co-manage and drive design sprints across varied product categories, from concept through iteration.</li>
-            <li>Research and test molding methods, including 3D-printed molds, to enable faster, low-cost prototyping.</li>
-            <li>Create SOPs for assembly and production processes to standardize and optimize workflows.</li>
-            <li>Manage inventory and tracking of samples and finished products across the product portfolio.</li>
-            <li>Maintain the product launch tracking system across sourcing, BIS certification, design, packaging, and production timelines.</li>
-            <li>Evaluate vendor quotes against a COGS-based sourcing model to protect target margins and flag pricing risks.</li>
-            <li>Work on new product development for Kickstarter crowdfunding launches.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-card">
-          <div class="tl-role">Founders Office</div>
-          <div class="tl-co">26ideas · AI-first OS</div>
-          <ul>
-            <li>Coordinated the founder's daily agenda, 1:1 meetings, and operational execution across business and personal consulting verticals.</li>
-            <li>Drafted and managed professional communications with clients and stakeholders, ensuring clarity and timely follow-ups.</li>
-            <li>Supported preparation and delivery of sales proposals and client presentations tailored to business needs.</li>
-            <li>Played a key role in fundraising — creating pitch decks, researching potential VCs, and drafting targeted communications.</li>
-            <li>Automated business workflows using n8n, GPT agents, and APIs, saving 24 hours per week.</li>
-            <li>Increased social media engagement by optimizing content pipeline management.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-card">
-          <div class="tl-role">Founder &amp; Mechanical Lead</div>
-          <div class="tl-co">Dimension Six Technologies Pvt · E-Mobility</div>
-          <ul>
-            <li>Designed an EV conversion kit for bicycles delivering a 30% performance boost and 30 km range, focused on cost-effective design.</li>
-            <li>Led a small team of 3 engineers developing the product with an emphasis on low-cost solutions.</li>
-            <li>Planned the sales and launch strategy targeting 100 units in 3 months, defining customer segments and go-to-market.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-card">
-          <div class="tl-role">Chief Manufacturing Officer</div>
-          <div class="tl-co">DJS Racing · Formula-Student Racing Team</div>
-          <ul>
-            <li>Managed end-to-end supply chain — global procurement of materials and parts to meet quality and performance criteria.</li>
-            <li>Implemented PERT/CPM techniques to plan and manage the manufacturing timeline and ensure on-time delivery.</li>
-            <li>Directed the entire manufacturing process — seamless integration and assembly of all vehicle components.</li>
-            <li>Collaborated with sponsors for custom component manufacturing at high-quality standards.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <div class="tl-card">
-          <div class="tl-role">Business Plan Lead</div>
-          <div class="tl-co">DJS Racing · Formula-Student Racing Team</div>
-          <ul>
-            <li>Led a team of 16 in the Business Plan Static Event at Formula Bharat, a national motorsport competition.</li>
-            <li>Developed a business plan around the commercial potential of the team's innovative EV chassis.</li>
-            <li>Prepared detailed financial projections and compliance strategies for the first year of operations.</li>
-          </ul>
-        </div>
-      </div>
+    <div class="actions">
+      <a class="btn solid" href="YASH_JITENDRA_KOTHARI_Resume.pdf">Download Résumé (PDF)</a>
+      <a class="btn" href="#work">Read the Features ↓</a>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- WORK GALLERY -->
-<section id="work">
-  <div class="wrap">
-    <div class="kicker reveal">Featured Work</div>
-    <div class="h2 reveal">DJS Racing · Formula Student</div>
-    <p class="sub reveal">Building, testing, and competing with DJS Racing's electric formula cars (E19 &amp; E02) — where I served as Chief Manufacturing Officer and Business Plan Lead. Plus the Hook EV conversion kit.</p>
+  <div class="divider"></div>
 
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="shead">The Record &nbsp;·&nbsp; <b>Experience</b></div>
+
+    <div class="rec reveal">
+      <div><div class="co">Armor · Consumer Electronics</div><h3>Founder's Office</h3><div class="tenure">Present</div></div>
+      <ul>
+        <li>Support the founder's day-to-day operations, scheduling, and prioritization across product, sourcing, and go-to-market.</li>
+        <li>Co-manage and drive design sprints across varied product categories, from concept through iteration.</li>
+        <li>Research and test molding methods, including 3D-printed molds, for faster, low-cost prototyping.</li>
+        <li>Create SOPs for assembly and production processes to standardize and optimize workflows.</li>
+        <li>Manage inventory and tracking of samples and finished products; maintain the product launch tracking system across sourcing, BIS, design, packaging, and production.</li>
+        <li>Evaluate vendor quotes against a COGS-based sourcing model; contribute to new products for Kickstarter launches.</li>
+      </ul>
+    </div>
+
+    <div class="rec reveal">
+      <div><div class="co">26ideas · AI-first OS</div><h3>Founder's Office</h3><div class="tenure">Prior</div></div>
+      <ul>
+        <li>Coordinated the founder's daily agenda, 1:1 meetings, and operational execution across business and consulting verticals.</li>
+        <li>Drafted professional communications and prepared sales proposals and client presentations.</li>
+        <li>Played a key role in fundraising — pitch decks, VC research, and targeted outreach.</li>
+        <li>Authored a team of specialist AI agent personas; automated workflows with n8n, GPT agents, and APIs, saving ~24 hours/week.</li>
+      </ul>
+    </div>
+
+    <div class="rec reveal">
+      <div><div class="co">Dimension Six · E-Mobility</div><h3>Founder &amp; Mechanical Lead</h3><div class="tenure">Hook EV Kit</div></div>
+      <ul>
+        <li>Designed the Hook EV conversion kit for bicycles — 30% performance boost, 30&nbsp;km range — focused on cost-effective design.</li>
+        <li>Led a small team of 3 engineers from CAD through working prototype.</li>
+        <li>Planned the sales and launch strategy targeting 100 units in 3 months.</li>
+      </ul>
+    </div>
+
+    <div class="rec reveal">
+      <div><div class="co">DJS Racing · Formula Student</div><h3>Chief Manufacturing Officer</h3><div class="tenure">Formula Bharat</div></div>
+      <ul>
+        <li>Managed end-to-end supply chain — global procurement of materials and parts to quality and performance criteria.</li>
+        <li>Implemented PERT/CPM techniques to plan the manufacturing timeline and ensure on-time delivery.</li>
+        <li>Directed the entire manufacturing process — integration and assembly of all vehicle components.</li>
+        <li>Collaborated with sponsors for custom component manufacturing at high-quality standards.</li>
+      </ul>
+    </div>
+
+    <div class="rec reveal">
+      <div><div class="co">DJS Racing · Formula Student</div><h3>Business Plan Lead</h3><div class="tenure">Formula Bharat</div></div>
+      <ul>
+        <li>Led a team of 16 in the Business Plan Static Event at Formula Bharat, a national motorsport competition.</li>
+        <li>Developed the business plan around the commercial potential of the team's innovative EV chassis.</li>
+        <li>Prepared detailed financial projections and compliance strategies for the first year of operations.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WORK / FORMULA STUDENT -->
+  <section id="work">
+    <div class="shead">Selected Work &nbsp;·&nbsp; <b>DJS Racing, Formula Student</b></div>
     <div class="grid">
-      <div class="work reveal">
-        <div class="ph"><img src="images/formula-bharat.jpg" alt="DJS Racing E19 electric formula car with team at Formula Bharat 2025"></div>
-        <div class="work-body">
-          <h3>Formula Bharat 2025 — E19</h3>
-          <p>Competed with DJS Racing's E19 electric formula car; led the business-plan case and end-to-end manufacturing to the grid.</p>
-          <span class="tag">Formula Student</span><span class="tag">Leadership</span>
-        </div>
-      </div>
-
-      <div class="work reveal d1">
-        <div class="ph"><img src="images/chassis.jpg" alt="Bare formula car chassis with suspension and racing slicks"></div>
-        <div class="work-body">
-          <h3>Chassis &amp; Manufacturing</h3>
-          <p>Directed the full build — chassis, suspension, and assembly of every vehicle component — on a PERT/CPM timeline.</p>
-          <span class="tag">Manufacturing</span><span class="tag">Supply Chain</span>
-        </div>
-      </div>
-
-      <div class="work reveal d2">
-        <div class="ph"><img src="images/e02-testing.jpg" alt="E02 electric formula car running during night testing"></div>
-        <div class="work-body">
-          <h3>Vehicle Testing — E02</h3>
-          <p>Night dynamics testing of the E02 electric car, validating powertrain and controls ahead of competition.</p>
-          <span class="tag">Testing</span><span class="tag">Powertrain</span>
-        </div>
-      </div>
-
-      <div class="work reveal">
-        <div class="ph"><img src="images/cockpit.jpg" alt="Driver seated in the formula car cockpit with LED status halo"></div>
-        <div class="work-body">
-          <h3>Driver &amp; Controls</h3>
-          <p>Cockpit and driver-interface integration, including a custom LED status halo for live vehicle telemetry.</p>
-          <span class="tag">Integration</span><span class="tag">Electronics</span>
-        </div>
-      </div>
-
-      <div class="work reveal d1">
-        <div class="ph"><img src="images/e19-car.jpg" alt="E19 electric formula car in the DJS Racing pit under the team banner"></div>
-        <div class="work-body">
-          <h3>In the Pits</h3>
-          <p>The E19 in the DJS Racing paddock — prepped for scrutineering and the dynamic events at Formula Bharat.</p>
-          <span class="tag">Formula Student</span><span class="tag">Ops</span>
-        </div>
-      </div>
-
+      <div class="art reveal"><div class="im"><img src="images/formula-bharat.jpg" alt="DJS Racing E19 with team at Formula Bharat 2025"></div>
+        <div class="cap">Fig. 1 — Formula Bharat 2025</div><h3>The Car That Made the Grid</h3>
+        <p><span class="sc">E19 · Electric.</span> Chief Manufacturing Officer for a full electric formula car, built to a PERT/CPM schedule.</p></div>
+      <div class="art reveal d1"><div class="im"><img src="images/chassis.jpg" alt="Bare chassis with suspension and slicks"></div>
+        <div class="cap">Fig. 2 — Chassis</div><h3>Assembled, Bolt by Bolt</h3>
+        <p><span class="sc">Manufacturing.</span> Directed integration and assembly of every component — suspension, drivetrain, bodywork.</p></div>
+      <div class="art reveal d2"><div class="im"><img src="images/e02-testing.jpg" alt="E02 electric formula car during night testing"></div>
+        <div class="cap">Fig. 3 — Night Testing</div><h3>Proven After Dark</h3>
+        <p><span class="sc">E02 · Validation.</span> Night dynamics testing of the powertrain and controls ahead of competition.</p></div>
+      <div class="art reveal"><div class="im"><img src="images/cockpit.jpg" alt="Driver in the cockpit with LED halo"></div>
+        <div class="cap">Fig. 4 — Cockpit</div><h3>Driver &amp; Controls</h3>
+        <p><span class="sc">Integration.</span> Cockpit and driver-interface build, including a custom LED status halo.</p></div>
+      <div class="art reveal d1"><div class="im"><img src="images/e19-car.jpg" alt="E19 in the DJS Racing pit"></div>
+        <div class="cap">Fig. 5 — The Paddock</div><h3>In the Pits</h3>
+        <p><span class="sc">Operations.</span> The E19 prepped for scrutineering and the dynamic events at Formula Bharat.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DIMENSION SIX / HOOK -->
-<section id="hook">
-  <div class="wrap">
-    <div class="kicker reveal">Dimension Six · E-Mobility</div>
-    <div class="h2 reveal">Hook — EV Conversion Kit</div>
-    <p class="sub reveal">A clamp-on electric drive kit that turns any standard bicycle electric — 30% performance boost, 30&nbsp;km range. I founded the effort and led mechanical design and a 3-engineer team from CAD to working prototype. <a href="https://www.hook.bike/about-us" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">hook.bike&nbsp;↗</a></p>
+  <div class="divider"></div>
 
+  <!-- HOOK -->
+  <section id="hook">
+    <div class="shead">The Feature &nbsp;·&nbsp; <b>Hook — EV Conversion Kit</b></div>
+    <p class="lead-para">A clamp-on electric drive kit that turns any standard bicycle electric — 30% performance boost, 30&nbsp;km range. Founded the effort at Dimension Six and led mechanical design from CAD to working prototype. <a href="https://www.hook.bike/about-us" target="_blank" rel="noopener">hook.bike ↗</a></p>
     <div class="grid">
-      <div class="work reveal">
-        <div class="ph"><img src="images/hook-hero.jpg" alt="Hook Daily EV conversion kit mounted on a bicycle"></div>
-        <div class="work-body">
-          <h3>The Hook Daily Kit</h3>
-          <p>The drive module clamps to the frame — no special bike, no workshop. Designed for a fast, tool-light install.</p>
-          <span class="tag">Product Design</span><span class="tag">Founder</span>
-        </div>
-      </div>
-
-      <div class="work reveal d1">
-        <div class="ph"><img src="images/hook-drivetrain.jpg" alt="Bicycle drivetrain with the Hook kit installed"></div>
-        <div class="work-body">
-          <h3>Bicycle Integration</h3>
-          <p>Retrofits onto a standard bike — chain, crank, and wheels untouched, so any cycle becomes electric.</p>
-          <span class="tag">Retrofit</span><span class="tag">E-Mobility</span>
-        </div>
-      </div>
-
-      <div class="work reveal d2">
-        <div class="ph"><img src="images/hook-mount.jpg" alt="Hook Daily drive module three-quarter view on the bicycle frame"></div>
-        <div class="work-body">
-          <h3>Drive Module</h3>
-          <p>Self-contained motor, battery, and controller in one clamp-on unit, engineered to fit varied frame diameters.</p>
-          <span class="tag">Mechanical Design</span><span class="tag">CAD</span>
-        </div>
-      </div>
-
-      <div class="work reveal">
-        <div class="ph"><img src="images/hook-detail.jpg" alt="Close detail of the Hook Daily drive roller and engagement mechanism"></div>
-        <div class="work-body">
-          <h3>Drive Engagement</h3>
-          <p>Spring-loaded roller drive against the tyre — the mechanism behind the 30% boost and 30&nbsp;km range.</p>
-          <span class="tag">Mechanism</span><span class="tag">Powertrain</span>
-        </div>
-      </div>
+      <div class="art reveal"><div class="im"><img src="images/hook-hero.jpg" alt="Hook Daily kit mounted on a bicycle"></div>
+        <div class="cap">Plate A — The Kit</div><h3>The Hook Daily Kit</h3>
+        <p>The drive module clamps to the frame — no special bike, no workshop. A fast, tool-light install.</p></div>
+      <div class="art reveal d1"><div class="im"><img src="images/hook-drivetrain.jpg" alt="Bicycle drivetrain with the Hook kit"></div>
+        <div class="cap">Plate B — Integration</div><h3>Any Bike, Now Electric</h3>
+        <p>Retrofits onto a standard drivetrain — chain, crank, and wheels untouched.</p></div>
+      <div class="art reveal d2"><div class="im"><img src="images/hook-mount.jpg" alt="Hook drive module three-quarter view"></div>
+        <div class="cap">Plate C — Drive Module</div><h3>One Clamp-On Unit</h3>
+        <p>Self-contained motor, battery, and controller — engineered to fit varied frame diameters.</p></div>
+      <div class="art reveal"><div class="im"><img src="images/hook-detail.jpg" alt="Hook drive roller detail"></div>
+        <div class="cap">Plate D — Engagement</div><h3>Where the Power Meets the Road</h3>
+        <p>Spring-loaded roller drive against the tyre — the mechanism behind the 30% boost.</p></div>
     </div>
 
-    <div class="kicker reveal" style="margin-top:44px">CAD &amp; Engineering</div>
-    <div class="h2 reveal" style="font-size:clamp(20px,3vw,26px)">Selected production drawings</div>
-    <p class="sub reveal">Manufacturing drawings I made in SolidWorks — orthographic and isometric views, tolerances, and shop notes. Tap any sheet to open it full-size. Scroll&nbsp;→</p>
-    <div class="cadstrip reveal">
-      <a class="cadcard" href="images/cad-couplers.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-couplers.jpg" alt="Motor couplers engineering drawing"></div><div class="cname">Motor Couplers<span>Turned part · chromium plated</span></div></a>
-      <a class="cadcard" href="images/cad-roller.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-roller.jpg" alt="Motor PU roller engineering drawing"></div><div class="cname">Drive Roller<span>PU roller · press fit</span></div></a>
-      <a class="cadcard" href="images/cad-mount.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-mount.jpg" alt="Motor sides mount engineering drawing"></div><div class="cname">Motor Side Mount<span>Sheet-metal bracket</span></div></a>
-      <a class="cadcard" href="images/cad-sidebody.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-sidebody.jpg" alt="Side body left and right engineering drawing"></div><div class="cname">Side Bodies (L&amp;R)<span>Folded sheet-metal housing</span></div></a>
-      <a class="cadcard" href="images/cad-support.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-support.jpg" alt="Support block and rod engineering drawing"></div><div class="cname">Support Block &amp; Rod<span>M6 tapped · qty 2</span></div></a>
-      <a class="cadcard" href="images/cad-spring.jpg" target="_blank" rel="noopener"><div class="cimg"><img src="images/cad-spring.jpg" alt="Compression spring engineering drawing"></div><div class="cname">Compression Spring<span>1.2 / 1.6 mm wire</span></div></a>
+    <div class="shead" style="margin-top:30px">Production Drawings &nbsp;·&nbsp; <b>SolidWorks</b></div>
+    <p class="lead-para" style="font-style:normal;font-size:14px">Manufacturing drawings — orthographic and isometric views, tolerances, and shop notes. Tap a plate to enlarge. Scroll →</p>
+    <div class="plates reveal">
+      <a class="plate" href="images/cad-couplers.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-couplers.jpg" alt="Motor couplers drawing"></div><div class="pc"><div class="pl">Plate I</div><h4>Motor Couplers</h4><span>Turned · chromium plated</span></div></a>
+      <a class="plate" href="images/cad-roller.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-roller.jpg" alt="Drive roller drawing"></div><div class="pc"><div class="pl">Plate II</div><h4>Drive Roller</h4><span>PU roller · press fit</span></div></a>
+      <a class="plate" href="images/cad-mount.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-mount.jpg" alt="Motor side mount drawing"></div><div class="pc"><div class="pl">Plate III</div><h4>Motor Side Mount</h4><span>Sheet-metal bracket</span></div></a>
+      <a class="plate" href="images/cad-sidebody.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-sidebody.jpg" alt="Side bodies drawing"></div><div class="pc"><div class="pl">Plate IV</div><h4>Side Bodies (L&amp;R)</h4><span>Folded sheet-metal housing</span></div></a>
+      <a class="plate" href="images/cad-support.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-support.jpg" alt="Support block and rod drawing"></div><div class="pc"><div class="pl">Plate V</div><h4>Support Block &amp; Rod</h4><span>M6 tapped · qty 2</span></div></a>
+      <a class="plate" href="images/cad-spring.jpg" target="_blank" rel="noopener"><div class="pim"><img src="images/cad-spring.jpg" alt="Compression spring drawing"></div><div class="pc"><div class="pl">Plate VI</div><h4>Compression Spring</h4><span>1.2 / 1.6 mm wire</span></div></a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 26IDEAS · AI COFOUNDER -->
-<section id="ai">
-  <div class="wrap">
-    <div class="kicker reveal">26ideas · AI-first OS</div>
-    <div class="h2 reveal">AI Cofounder — a virtual founding team</div>
-    <p class="sub reveal">At 26ideas I helped design and build "AI Cofounder": a team of specialist AI agents, each with its own visual identity, backstory, and voice. I authored the expert personas and the behaviour behind them — turning raw GPT agents into a coherent, on-brand founding team.</p>
+  <div class="divider"></div>
+
+  <!-- AI COFOUNDER -->
+  <section id="ai">
+    <div class="shead">The Cast &nbsp;·&nbsp; <b>26ideas — AI Cofounder</b></div>
+    <p class="lead-para">At 26ideas I authored "AI Cofounder": a team of specialist AI agents, each with its own visual identity, backstory, and voice — turning raw GPT agents into a coherent, on-brand founding team.</p>
     <img class="banner reveal" src="images/ai-team.jpg" alt="AI Cofounder — the full team of AI expert agents">
-    <div class="personas">
-      <div class="persona reveal"><img src="images/ai-noah.jpg" alt="Noah — AI Business Plan expert"><div class="pn">Noah</div><div class="pr">Business Plan</div></div>
-      <div class="persona reveal d1"><img src="images/ai-felix.jpg" alt="Felix — AI Funding expert"><div class="pn">Felix</div><div class="pr">Funding</div></div>
-      <div class="persona reveal d2"><img src="images/ai-skye.jpg" alt="Skye — AI Sales expert"><div class="pn">Skye</div><div class="pr">Sales</div></div>
-      <div class="persona reveal d3"><img src="images/ai-marc.jpg" alt="Marc — AI Marketing expert"><div class="pn">Marc</div><div class="pr">Marketing</div></div>
-      <div class="persona reveal"><img src="images/ai-percy.jpg" alt="Percy — AI Product expert"><div class="pn">Percy</div><div class="pr">Product</div></div>
-      <div class="persona reveal d1"><img src="images/ai-ruby.jpg" alt="Ruby — AI Research expert"><div class="pn">Ruby</div><div class="pr">Research</div></div>
-      <div class="persona reveal d2"><img src="images/ai-holly.jpg" alt="Holly — AI Hiring expert"><div class="pn">Holly</div><div class="pr">Hiring</div></div>
-      <div class="persona reveal d3"><img src="images/ai-lily.jpg" alt="Lily — AI Legal expert"><div class="pn">Lily</div><div class="pr">Legal</div></div>
+    <div class="cast">
+      <div class="figp reveal"><div class="im"><img src="images/ai-noah.jpg" alt="Noah"></div><div class="pn">Noah</div><div class="pr">Business Plan</div></div>
+      <div class="figp reveal d1"><div class="im"><img src="images/ai-felix.jpg" alt="Felix"></div><div class="pn">Felix</div><div class="pr">Funding</div></div>
+      <div class="figp reveal d2"><div class="im"><img src="images/ai-skye.jpg" alt="Skye"></div><div class="pn">Skye</div><div class="pr">Sales</div></div>
+      <div class="figp reveal d3"><div class="im"><img src="images/ai-marc.jpg" alt="Marc"></div><div class="pn">Marc</div><div class="pr">Marketing</div></div>
+      <div class="figp reveal"><div class="im"><img src="images/ai-percy.jpg" alt="Percy"></div><div class="pn">Percy</div><div class="pr">Product</div></div>
+      <div class="figp reveal d1"><div class="im"><img src="images/ai-ruby.jpg" alt="Ruby"></div><div class="pn">Ruby</div><div class="pr">Research</div></div>
+      <div class="figp reveal d2"><div class="im"><img src="images/ai-holly.jpg" alt="Holly"></div><div class="pn">Holly</div><div class="pr">Hiring</div></div>
+      <div class="figp reveal d3"><div class="im"><img src="images/ai-lily.jpg" alt="Lily"></div><div class="pn">Lily</div><div class="pr">Legal</div></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="kicker reveal">Skills</div>
-    <div class="h2 reveal">What I bring</div>
+  <div class="divider"></div>
 
-    <div class="skillgroup reveal">
-      <h4>Executive Support &amp; Operations</h4>
-      <div class="chips">
-        <span class="chip">Founder's Office Operations</span>
-        <span class="chip">Cross-Functional Coordination</span>
-        <span class="chip">Multitasking &amp; Prioritization</span>
-        <span class="chip">Inventory &amp; Sample Tracking</span>
-      </div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="shead">The Index &nbsp;·&nbsp; <b>Skills</b></div>
+    <div class="index">
+      <div class="idxg"><h4>Executive Support &amp; Operations</h4><p>Founder's Office Operations · Cross-Functional Coordination · Multitasking &amp; Prioritization · Inventory &amp; Sample Tracking</p></div>
+      <div class="idxg"><h4>Product &amp; Manufacturing</h4><p>Design Sprints · 3D-Printed Molds · Assembly SOPs · Prototyping · Supply Chain &amp; Procurement · PERT / CPM Planning · SolidWorks CAD</p></div>
+      <div class="idxg"><h4>Communication &amp; Client Relations</h4><p>Professional Email Writing · Client Meeting Management · Stakeholder Relationship Building · Follow-ups &amp; Engagement</p></div>
+      <div class="idxg"><h4>Sales, Presentation &amp; Tools</h4><p>Sales Proposal Development · Pitch Deck Creation · Advanced MS Office · Google Workspace · Automation (n8n, APIs)</p></div>
     </div>
-    <div class="skillgroup reveal d1">
-      <h4>Product &amp; Manufacturing</h4>
-      <div class="chips">
-        <span class="chip">Design Sprints</span>
-        <span class="chip">3D-Printed Molds</span>
-        <span class="chip">Assembly SOPs</span>
-        <span class="chip">Prototyping</span>
-        <span class="chip">Supply Chain &amp; Procurement</span>
-        <span class="chip">PERT / CPM Planning</span>
-      </div>
-    </div>
-    <div class="skillgroup reveal d2">
-      <h4>Communication &amp; Client Relations</h4>
-      <div class="chips">
-        <span class="chip">Professional Email Writing</span>
-        <span class="chip">Client Meeting Management</span>
-        <span class="chip">Stakeholder Relationship Building</span>
-        <span class="chip">Follow-ups &amp; Engagement</span>
-      </div>
-    </div>
-    <div class="skillgroup reveal d3">
-      <h4>Sales, Presentation &amp; Tools</h4>
-      <div class="chips">
-        <span class="chip">Sales Proposal Development</span>
-        <span class="chip">Pitch Deck Creation</span>
-        <span class="chip">Advanced MS Office</span>
-        <span class="chip">Google Workspace</span>
-        <span class="chip">Automation (n8n, APIs)</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="wrap">
-    <div class="kicker reveal">Education</div>
-    <div class="h2 reveal">Foundation</div>
-    <div class="edu-card reveal">
-      <div class="edu-ic"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg></div>
-      <div>
-        <h3>SVKM Dwarkadas J. Sanghvi College of Engineering</h3>
-        <p>B.Tech in Mechanical Engineering</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="divider"></div>
 
-<!-- FOOTER / CONTACT -->
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="shead"><b>Education</b></div>
+    <div class="edu reveal">
+      <div><h3>SVKM Dwarkadas J. Sanghvi College of Engineering</h3><p>B.Tech in Mechanical Engineering</p></div>
+      <div class="yr">Mumbai</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
 <footer id="contact">
   <div class="wrap">
-    <h3 class="reveal">Let's build something.</h3>
-    <p class="reveal">Open to roles in operations, product, and founders-office work.</p>
-    <div class="cta reveal d1" style="justify-content:center">
-      <a class="btn primary" href="mailto:yashkothari010101@gmail.com">
-        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.4l8 5 8-5V6H4z"/></svg>
-        Email Me
-      </a>
-      <a class="btn ghost" href="YASH_JITENDRA_KOTHARI_Resume.pdf">Download Résumé</a>
+    <div class="fh">Let's build something.</div>
+    <div class="fd">Open to roles in operations, product, and founder's-office work.</div>
+    <div class="actions">
+      <a class="btn solid" href="mailto:yashkothari010101@gmail.com">Email Me</a>
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="YASH_JITENDRA_KOTHARI_Resume.pdf">Résumé (PDF)</a>
     </div>
-    <div class="fnote">© Yash Jitendra Kothari · Mumbai, India</div>
+    <div class="col">Yash Kothari · Mumbai · yashkothari010101@gmail.com · +91-8169988762<br>Set in Georgia · Anno MMXXVI</div>
   </div>
 </footer>
 
 <script>
-  // Scroll-reveal
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
