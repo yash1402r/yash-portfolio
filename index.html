@@ -62,6 +62,24 @@
   .btn.solid{background:var(--ink);color:var(--paper)}
   .btn.solid:hover{background:var(--acc);border-color:var(--acc)}
 
+  /* op-ed / note from Yash */
+  .oped{display:grid;grid-template-columns:210px 1fr;gap:32px;align-items:start;
+    margin-top:26px;border-top:1px solid var(--rule);padding-top:26px}
+  .portrait{position:relative;border:1px solid var(--line);background:var(--card);aspect-ratio:4/5;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden}
+  .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--card)}
+  .portrait .mono{font-family:Georgia,serif;font-weight:800;font-size:60px;letter-spacing:3px;color:var(--ink)}
+  .portrait .cap{font-size:10px;letter-spacing:1.5px;font-variant:small-caps;color:var(--faint);text-align:center;padding:0 8px}
+  .oped .note p{font-size:16px;line-height:1.66;margin-bottom:12px;color:var(--ink)}
+  .oped .note p:first-child::first-letter{font-size:52px;float:left;line-height:.78;padding:6px 9px 0 0;font-weight:800}
+  .oped .sign{font-style:italic;font-size:19px;color:var(--acc);margin-top:8px}
+  @media(max-width:600px){
+    .oped{grid-template-columns:110px 1fr;gap:16px;padding-top:20px}
+    .portrait .mono{font-size:34px}
+    .oped .note p{font-size:15px}
+    .oped .note p:first-child::first-letter{font-size:42px}
+  }
+
   /* section header */
   section{padding:30px 0}
   .divider{border-top:4px double var(--line);margin-top:8px}
@@ -238,16 +256,23 @@
 
   <!-- LEAD ARTICLE -->
   <header>
-    <div class="hl">Builds Products, Processes &amp; Launches — From CAD to Running Machine</div>
-    <div class="dek">A mechanical engineer turned operator, at home on the shop floor and in the founder's office alike.</div>
-    <div class="cols">
-      <p>Yash Kothari works where design meets manufacturing meets go-to-market. From the founder's office of a fast-scaling consumer-electronics brand, he co-manages design sprints, stands up assembly SOPs, and tests molding methods — including 3D-printed molds — to move products from concept to shelf.</p>
-      <p>His record runs on hardware. As Chief Manufacturing Officer at DJS Racing he directed the end-to-end build of an electric formula car, and as founder of Hook he designed a clamp-on kit that turns any bicycle electric — a 30% performance boost and 30&nbsp;km of range.</p>
-      <p>Earlier, in the founder's office at 26ideas, he authored a team of specialist AI agents and automated business workflows. The method is consistent throughout: organise the chaos, build the system, ship the hardware — then write the SOP so it happens again.</p>
+    <div class="hl">Organise the Chaos. Build the System. Ship the Machine.</div>
+    <div class="dek">A note from Yash Kothari — engineer, operator, founder's-office generalist.</div>
+    <div class="oped">
+      <div class="portrait">
+        <img src="images/yash.jpg" alt="Yash Kothari" onerror="this.style.display='none'">
+        <span class="mono">YK</span><span class="cap">Yash Kothari · Mumbai</span>
+      </div>
+      <div class="note">
+        <p>I’m Yash. I’m happiest around problems that end in something you can hold — a car that runs, a prototype that works, a process that didn’t exist yesterday.</p>
+        <p>What I’m genuinely good at is turning chaos into systems: taking a loose idea, giving it structure, and getting a team unstuck so the work actually moves. I learn fastest with a tool in my hand and a deadline in front of me — I’d rather be judged by what I ship than by a transcript.</p>
+        <p>Hand tools, SolidWorks, or a stack of AI — give me any of them and I’ll find the path from concept to running machine. I don’t sit still well; I always want the next step. Ownership, clear communication, and a good SOP are how I work. Off the clock, I’m usually learning from builders and operators, or halfway into a side project.</p>
+        <div class="sign">— Yash</div>
+      </div>
     </div>
     <div class="actions">
       <a class="btn solid" href="YASH_JITENDRA_KOTHARI_Resume.pdf">Download Résumé (PDF)</a>
-      <a class="btn" href="#work">Read the Features ↓</a>
+      <a class="btn" href="#work">See the Work ↓</a>
     </div>
   </header>
 
@@ -414,7 +439,7 @@
 <footer id="contact">
   <div class="wrap">
     <div class="fh">Let's build something.</div>
-    <div class="fd">Open to roles in operations, product, and founder's-office work.</div>
+    <div class="fd">I'm open to operations, product, and founder's-office roles — and always up for a good build.</div>
     <div class="actions">
       <a class="btn solid" href="mailto:yashkothari010101@gmail.com">Email Me</a>
       <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
