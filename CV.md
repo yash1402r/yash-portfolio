@@ -3,7 +3,7 @@
 **Founder's Office · Engineer · Operator**
 
 Mumbai, India · [yashkothari010101@gmail.com](mailto:yashkothari010101@gmail.com) · +91-8169988762
-[LinkedIn](https://www.linkedin.com/) · [Portfolio](https://yash1402r.github.io/yash-portfolio/) · [hook.bike](https://www.hook.bike/about-us)
+[LinkedIn](https://www.linkedin.com/) · [Portfolio](https://yash1402r.github.io/yash-portfolio/)
 
 ---
 
@@ -39,6 +39,7 @@ Founder's-office operator and mechanical engineer with 1 year of full-time exper
 - Increased social media engagement by optimizing content pipeline management, enhancing brand visibility and client outreach.
 
 ### Founder & Mechanical Lead — Dimension Six Technologies Pvt | E-Mobility
+*Hook EV kit — [hook.bike](https://www.hook.bike/about-us)*
 - Designed an EV conversion kit for bicycles (Hook) delivering a 30% performance boost and 30 km range, focusing on cost-effective design and manufacturing.
 - Led a small team of 3 engineers in developing the product with an emphasis on low-cost solutions.
 - Planned the sales and launch strategy targeting 100 units in 3 months, defining customer segments and go-to-market approach.
