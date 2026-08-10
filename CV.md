@@ -3,7 +3,7 @@
 **Founder's Office · Engineer · Operator**
 
 Mumbai, India · [yashkothari010101@gmail.com](mailto:yashkothari010101@gmail.com) · +91-8169988762
-[LinkedIn](https://www.linkedin.com/) · [Portfolio](https://yash1402r.github.io/yash-portfolio/)
+[LinkedIn](https://www.linkedin.com/in/yash-kothari-works/) · [Portfolio](https://yash1402r.github.io/yash-portfolio/)
 
 ---
 
