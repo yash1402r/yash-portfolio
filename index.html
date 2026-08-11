@@ -240,9 +240,131 @@
     .lb-meta div{flex-basis:100%}
     .lb h3{font-size:24px}
   }
+
+  /* ============ CHOOSER GATE ============ */
+  /* Before a choice is made, only the gate shows. */
+  #fun-mode,#prof-mode{display:none}
+  body.fun #fun-mode{display:block}
+  body.pro #prof-mode{display:block}
+  body.fun,body.pro{overflow-x:hidden}
+  body:not(.fun):not(.pro){overflow:hidden;height:100vh}
+  body:not(.fun):not(.pro) #gate{display:flex}
+  body.fun #gate,body.pro #gate{display:none}
+
+  #gate{position:fixed;inset:0;z-index:200;background:var(--paper);color:var(--ink);
+    flex-direction:column;align-items:center;justify-content:center;padding:28px 22px;overflow-y:auto}
+  .gate-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;
+    font-size:11px;letter-spacing:2px;font-variant:small-caps;padding:14px 26px;color:var(--dim)}
+  .gate-mast{text-align:center;max-width:900px}
+  .gate-kicker{font-size:12px;letter-spacing:4px;font-variant:small-caps;color:var(--acc);margin-bottom:6px}
+  .gate-mast h1{font-size:clamp(34px,7vw,72px);font-weight:800;line-height:1;font-variant:small-caps;
+    letter-spacing:1px;border-top:4px double var(--line);border-bottom:4px double var(--line);padding:14px 0}
+  .gate-dek{font-style:italic;font-size:clamp(15px,2.4vw,20px);color:var(--dim);margin:16px 0 4px}
+  .gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:820px;width:100%;margin-top:30px}
+  .choice{position:relative;display:flex;flex-direction:column;text-align:left;cursor:pointer;
+    background:var(--card);border:1.5px solid var(--line);padding:26px 24px 22px;text-decoration:none;color:inherit;
+    opacity:0;transform:translateY(14px);animation:gaterise .6s var(--ease) forwards}
+  .choice:nth-child(2){animation-delay:.09s}
+  .choice .num{position:absolute;top:16px;right:20px;font-size:12px;font-variant:small-caps;letter-spacing:1.5px;color:var(--faint)}
+  .choice .ic{font-size:38px;line-height:1;margin-bottom:14px}
+  .choice .ct{font-size:12px;letter-spacing:2px;font-variant:small-caps;color:var(--acc);font-weight:700}
+  .choice h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;line-height:1.05;margin:3px 0 10px}
+  .choice p{font-size:14.5px;line-height:1.55;color:var(--dim);margin-bottom:18px}
+  .choice .go{margin-top:auto;font-size:12px;font-variant:small-caps;letter-spacing:1.5px;font-weight:700;
+    display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+  .choice .go .arw{transition:transform .3s var(--ease)}
+  .choice .tag{position:absolute;bottom:22px;right:24px;font-size:10.5px;font-variant:small-caps;letter-spacing:1px;color:var(--faint)}
+  .gate-foot{margin-top:26px;font-size:11px;font-variant:small-caps;letter-spacing:1.5px;color:var(--faint)}
+  .gate-foot b{color:var(--dim);font-weight:400}
+  @keyframes gaterise{to{opacity:1;transform:none}}
+  @media (hover:hover) and (pointer:fine){
+    .choice{transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease)}
+    .choice:hover{transform:translateY(-5px);border-color:var(--acc);box-shadow:0 14px 34px -18px rgba(20,16,10,.5)}
+    .choice:hover .go .arw{transform:translateX(5px)}
+  }
+  .choice:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+  @media(max-width:640px){.gate-grid{grid-template-columns:1fr;gap:16px}.choice{padding:22px 20px}}
+  @media(prefers-reduced-motion:reduce){.choice{animation:none;opacity:1;transform:none}}
+
+  /* small persistent "switch view" chip shown inside each mode */
+  .switcher{position:fixed;z-index:120;bottom:18px;right:18px;background:var(--ink);color:var(--paper);
+    border:1.5px solid var(--ink);border-radius:40px;padding:9px 16px;font-family:Georgia,serif;
+    font-size:11px;font-variant:small-caps;letter-spacing:1.5px;cursor:pointer;
+    box-shadow:0 8px 24px -12px rgba(20,16,10,.6);transition:background .2s,transform .25s var(--ease)}
+  .switcher:hover{background:var(--acc);border-color:var(--acc)}
+  @media (hover:hover){.switcher:hover{transform:translateY(-2px)}}
+  @media print{.switcher{display:none}}
+
+  /* ============ PROFESSIONAL MODE (clean résumé) ============ */
+  #prof-mode{--pink:#8f2d1e;background:#fff;color:#1c1c1c;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.5;min-height:100vh}
+  .pr-wrap{max-width:820px;margin:0 auto;padding:54px 40px 90px}
+  .pr-head{text-align:center;border-bottom:2px solid #1c1c1c;padding-bottom:18px;margin-bottom:8px}
+  .pr-head h1{font-size:34px;font-weight:800;letter-spacing:.5px;line-height:1.05}
+  .pr-role{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;margin-top:7px}
+  .pr-contact{font-size:12.5px;color:#333;margin-top:10px;line-height:1.7}
+  .pr-contact a{color:var(--pink);text-decoration:none}
+  .pr-contact a:hover{text-decoration:underline}
+  #prof-mode h2{font-size:12.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    border-bottom:1px solid #ccc;padding-bottom:4px;margin:26px 0 12px;color:#1c1c1c}
+  .pr-sum{font-size:13.5px;color:#2a2a2a}
+  .pr-job{margin-bottom:16px}
+  .pr-jh{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .pr-jt{font-size:15px;font-weight:800}
+  .pr-jw{font-size:11.5px;font-style:italic;color:#777;white-space:nowrap;flex-shrink:0}
+  .pr-jc{font-size:12.5px;font-weight:700;color:#444;margin-top:1px}
+  .pr-jc a{color:var(--pink);text-decoration:none;font-weight:400}
+  #prof-mode ul{margin:7px 0 0 18px}
+  #prof-mode li{font-size:12.7px;color:#2a2a2a;margin-bottom:3.5px;padding-left:3px}
+  .pr-skill{font-size:12.7px;margin-bottom:5px;color:#2a2a2a}
+  .pr-skill b{color:#1c1c1c}
+  .pr-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:28px 0 4px}
+  .pr-btn{border:1.5px solid #1c1c1c;background:#1c1c1c;color:#fff;text-decoration:none;
+    padding:11px 22px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    border-radius:3px;transition:background .2s,color .2s}
+  .pr-btn.ghost{background:#fff;color:#1c1c1c}
+  .pr-btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+  @media(max-width:560px){.pr-wrap{padding:40px 22px 80px}.pr-head h1{font-size:27px}
+    .pr-jh{flex-direction:column;gap:0}.pr-jw{white-space:normal}}
 </style>
 </head>
 <body>
+
+<!-- ============ CHOOSER GATE ============ -->
+<div id="gate">
+  <div class="gate-top"><span>No. 01</span><span>Portfolio Edition</span><span>Price · Your Attention</span></div>
+  <div class="gate-mast">
+    <div class="gate-kicker">Yash Kothari</div>
+    <h1>Two Ways to Read Me</h1>
+    <div class="gate-dek">Same person, same work — pick the format you're in the mood for.</div>
+  </div>
+  <div class="gate-grid">
+    <a class="choice" href="#" onclick="pick('fun');return false" aria-label="Read the fun version">
+      <span class="num">01</span>
+      <span class="ic">📰</span>
+      <span class="ct">The Fun One</span>
+      <h2>The Newspaper</h2>
+      <p>Yash in his own words — a personal front-page with photos, projects, the Hook e-bike, Formula-Student car, and a bit of character.</p>
+      <span class="go">Read the story <span class="arw">→</span></span>
+      <span class="tag">~2 min · scrollable</span>
+    </a>
+    <a class="choice" href="#" onclick="pick('pro');return false" aria-label="Read the professional version">
+      <span class="num">02</span>
+      <span class="ic">📄</span>
+      <span class="ct">The Professional One</span>
+      <h2>The Résumé</h2>
+      <p>Straight to the point — a clean, scannable, recruiter-ready résumé with the full experience, skills, and a one-click PDF.</p>
+      <span class="go">See the résumé <span class="arw">→</span></span>
+      <span class="tag">30-sec skim · printable</span>
+    </a>
+  </div>
+  <div class="gate-foot">Press <b>1</b> for fun · <b>2</b> for professional · you can switch anytime</div>
+</div>
+
+<!-- ============ FUN MODE (the Gazette) ============ -->
+<div id="fun-mode">
+<button class="switcher" onclick="reopen()" aria-label="Switch view">⇄ Switch view</button>
 
 <nav>
   <div class="wrap">
@@ -504,8 +626,127 @@
   </div>
   <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
 </div>
+</div><!-- /fun-mode -->
+
+<!-- ============ PROFESSIONAL MODE (clean résumé) ============ -->
+<section id="prof-mode">
+  <button class="switcher" onclick="reopen()" aria-label="Switch view">⇄ Switch view</button>
+  <div class="pr-wrap">
+    <div class="pr-head">
+      <h1>Yash Jitendra Kothari</h1>
+      <div class="pr-role">Founder's Office · Engineer · Operator</div>
+      <div class="pr-contact">
+        Mumbai, India &nbsp;·&nbsp; <a href="mailto:yashkothari010101@gmail.com">yashkothari010101@gmail.com</a> &nbsp;·&nbsp; +91-8169988762<br>
+        <a href="https://yash1402r.github.io/yash-portfolio/">yash1402r.github.io/yash-portfolio</a> &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/yash-kothari-works/" target="_blank" rel="noopener">linkedin.com/in/yash-kothari-works</a>
+      </div>
+    </div>
+
+    <h2>Professional Summary</h2>
+    <p class="pr-sum">Founder's-office operator and mechanical engineer with 1 year of full-time experience alongside multiple internships, spanning product sourcing, cost engineering, manufacturing, and go-to-market for a fast-scaling consumer-electronics brand. Own launch timelines end to end — sourcing, certification, design, packaging, and production — evaluate vendor quotes against a COGS-based margin model, vet and negotiate with China and India suppliers, and author the process documentation that standardizes how products get built and shipped. Backed by hands-on hardware experience (EV-kit design, Formula-Student manufacturing) and strong communication, stakeholder-management, and analysis skills.</p>
+
+    <h2>Experience</h2>
+
+    <div class="pr-job">
+      <div class="pr-jh"><span class="pr-jt">Founder's Office</span><span class="pr-jw">Present</span></div>
+      <div class="pr-jc">Armor — Consumer Electronics Brand</div>
+      <ul>
+        <li>Support founder-level operations across sourcing, product, go-to-market, and production for a fast-scaling brand launching power banks, TWS, adapters, cables, keyboards, mice, and controllers.</li>
+        <li>Own and run the product launch tracking system, coordinating sourcing, BIS/WPC certification, design, packaging, and production timelines across the full portfolio to hold every product to its target launch month.</li>
+        <li>Evaluate vendor quotes against a COGS-based sourcing model across 9+ product categories — flagging band/spec mismatches, protecting target margins, and setting the ceiling MRP and cost-cut levers before commitments; maintain a running ledger of every quote checked.</li>
+        <li>Source, vet, and negotiate with domestic and overseas suppliers (China and India), running factory-video vetting to classify trader vs assembler vs manufacturer and reject traders before samples ship.</li>
+        <li>Triage supplier catalogues of hundreds of models against price bands and must-have features to shortlist launch candidates (verified a 341-model supplier catalogue against target economics).</li>
+        <li>Co-manage design sprints across product categories and research low-cost prototyping methods, including 3D-printed molds, from concept through iteration.</li>
+        <li>Author the brand's launch and process documentation — factory-vetting guideline, power-bank testing sheets, battery-cell sourcing list, and multi-stage QC / inspection checklists — locked into a single standardized house format.</li>
+        <li>Build GTM market analysis — price-band ladders across 17 categories and a demand × ease-of-entry ranking of 12 accessory lines — to prioritise which products and bands to enter.</li>
+        <li>Run product testing (adapter/cable compatibility, power-bank subjective and objective checks) and create assembly SOPs to standardize production workflows.</li>
+        <li>Support new-product development for Kickstarter launches, review manufacturing and supplier agreements, and manage sample and finished-goods inventory across the portfolio.</li>
+      </ul>
+    </div>
+
+    <div class="pr-job">
+      <div class="pr-jh"><span class="pr-jt">Founder's Office</span><span class="pr-jw">Prior</span></div>
+      <div class="pr-jc">26ideas — AI-first OS</div>
+      <ul>
+        <li>Coordinated the founder's daily agenda, 1:1 meetings, and operational execution across business and personal consulting verticals, prioritising high-impact tasks.</li>
+        <li>Drafted and managed professional communications with clients and stakeholders, ensuring clarity and timely follow-ups.</li>
+        <li>Supported preparation and delivery of sales proposals and client presentations tailored to specific business needs.</li>
+        <li>Played a key role in fundraising — creating pitch decks, researching potential VCs, and drafting targeted outreach that contributed to investor engagement.</li>
+        <li>Automated business workflows using n8n, GPT agents, and APIs, saving ~24 hours per week and improving operational efficiency.</li>
+        <li>Managed multi-functional tasks across sales, technology, training, and content, and grew social-media engagement through a tighter content pipeline.</li>
+      </ul>
+    </div>
+
+    <div class="pr-job">
+      <div class="pr-jh"><span class="pr-jt">Founder &amp; Mechanical Lead</span><span class="pr-jw">E-Mobility</span></div>
+      <div class="pr-jc">Dimension Six Technologies Pvt Ltd &nbsp;·&nbsp; <a href="https://www.hook.bike/about-us" target="_blank" rel="noopener">hook.bike</a></div>
+      <ul>
+        <li>Designed the Hook EV conversion kit for bicycles — 30% performance boost and 30 km range — with a focus on cost-effective design and manufacturing.</li>
+        <li>Led a small team of 3 engineers from CAD through working prototype, emphasising low-cost solutions.</li>
+        <li>Planned the sales and launch strategy targeting 100 units in 3 months, defining customer segments and go-to-market approach.</li>
+        <li>Earned positive feedback on the product's natural feel and usability during initial trials before launch.</li>
+      </ul>
+    </div>
+
+    <div class="pr-job">
+      <div class="pr-jh"><span class="pr-jt">Chief Manufacturing Officer</span><span class="pr-jw">Formula Student</span></div>
+      <div class="pr-jc">DJS Racing — Formula-Student Racing Team</div>
+      <ul>
+        <li>Managed end-to-end supply-chain operations, overseeing global procurement of materials and parts to quality and performance criteria.</li>
+        <li>Implemented PERT/CPM techniques to plan the manufacturing timeline and ensure on-time delivery of the final vehicle.</li>
+        <li>Directed the entire manufacturing process — integration and assembly of all vehicle components — and collaborated with sponsors for custom component manufacturing.</li>
+      </ul>
+    </div>
+
+    <div class="pr-job">
+      <div class="pr-jh"><span class="pr-jt">Business Plan Lead</span><span class="pr-jw">Formula Bharat</span></div>
+      <div class="pr-jc">DJS Racing — Formula-Student Racing Team</div>
+      <ul>
+        <li>Led a team of 16 in the Business Plan Static Event at Formula Bharat, a national motorsport competition.</li>
+        <li>Built a business plan around the commercial potential of the team's electric-vehicle chassis, with financial projections and compliance strategy for year one.</li>
+        <li>Integrated technical, financial, and market research across departments into a single business strategy.</li>
+      </ul>
+    </div>
+
+    <h2>Education</h2>
+    <div class="pr-jt" style="font-size:14px">SVKM Dwarkadas J. Sanghvi College of Engineering — Mumbai</div>
+    <div style="font-size:12.7px;color:#2a2a2a">B.Tech in Mechanical Engineering</div>
+
+    <h2>Skills</h2>
+    <div class="pr-skill"><b>Sourcing &amp; Cost Engineering:</b> COGS-Based Sourcing Models · Vendor Quote Evaluation · Price-Band Analysis · Supplier Negotiation (China &amp; India) · Factory Vetting · Catalogue Triage · BIS / WPC Certification Coordination</div>
+    <div class="pr-skill"><b>Product &amp; Manufacturing:</b> Design Sprints · 3D-Printed Molds &amp; Prototyping · Assembly SOPs · Product &amp; QC Testing · Launch Timeline Management · Supply Chain &amp; Procurement · PERT / CPM Planning · SolidWorks CAD</div>
+    <div class="pr-skill"><b>Operations &amp; Documentation:</b> Founder's Office Operations · Cross-Functional Coordination · Process &amp; Launch Documentation · Inventory &amp; Sample Tracking · GTM / Market Analysis</div>
+    <div class="pr-skill"><b>Communication &amp; Tools:</b> Professional Communications · Stakeholder Management · Sales Proposals &amp; Pitch Decks · Advanced MS Office (PowerPoint, Excel, Word) · Google Workspace · Automation Tools (n8n, APIs)</div>
+
+    <div class="pr-actions">
+      <a class="pr-btn" href="YASH_JITENDRA_KOTHARI_Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+      <a class="pr-btn ghost" href="#" onclick="pick('fun');return false">Prefer the fun version? →</a>
+    </div>
+  </div>
+</section>
 
 <script>
+  // ---- chooser gate ----
+  function pick(mode){
+    document.body.classList.remove('fun','pro');
+    document.body.classList.add(mode);
+    window.scrollTo(0,0);
+    try{history.replaceState(null,'','#'+mode)}catch(e){}
+  }
+  function reopen(){
+    document.body.classList.remove('fun','pro');
+    window.scrollTo(0,0);
+    try{history.replaceState(null,'',location.pathname)}catch(e){}
+  }
+  // deep-link: /#pro or /#fun opens straight into that mode
+  (function(){var h=(location.hash||'').replace('#','');if(h==='pro'||h==='fun')document.body.classList.add(h);})();
+  // keyboard: while the chooser is up, 1 = fun, 2 = pro
+  document.addEventListener('keydown',function(e){
+    var gated=!document.body.classList.contains('fun')&&!document.body.classList.contains('pro');
+    if(!gated)return;
+    if(e.key==='1'){pick('fun')} else if(e.key==='2'){pick('pro')}
+  });
+
   // scroll-reveal
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
