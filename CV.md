@@ -38,7 +38,7 @@ Founder's-office operator and mechanical engineer with 1 year of full-time exper
 - Managed multi-functional tasks across sales, technology, training, and content, handling varying high-priority deliverables daily.
 - Increased social media engagement by optimizing content pipeline management, enhancing brand visibility and client outreach.
 
-### Founder & Mechanical Lead — Dimension Six Technologies Pvt | E-Mobility
+### Mechanical Design Lead — Dimension Six Technologies Pvt | E-Mobility
 *Hook EV kit — [hook.bike](https://www.hook.bike/about-us)*
 - Designed an EV conversion kit for bicycles (Hook) delivering a 30% performance boost and 30 km range, focusing on cost-effective design and manufacturing.
 - Led a small team of 3 engineers in developing the product with an emphasis on low-cost solutions.
