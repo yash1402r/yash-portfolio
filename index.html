@@ -125,6 +125,22 @@
   .plate h4{font-size:16px;font-weight:800;margin:2px 0 6px}
   .plate span{font-size:12px;font-style:italic;color:var(--dim)}
 
+  /* 360 spin viewer */
+  .spin{position:relative;border:1px solid var(--line);background:#0d0b08;margin:4px 0 22px;overflow:hidden}
+  .spin-stage{position:relative;aspect-ratio:16/10;cursor:grab;touch-action:pan-y;
+    user-select:none;-webkit-user-select:none}
+  .spin-stage:active{cursor:grabbing}
+  .spin-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+    pointer-events:none;-webkit-user-drag:none}
+  .spin-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+    background:color-mix(in srgb,var(--paper) 92%,transparent);color:var(--ink);
+    font-size:11px;font-variant:small-caps;letter-spacing:1.5px;padding:7px 15px;border-radius:22px;
+    display:flex;align-items:center;gap:7px;transition:opacity .5s var(--ease);pointer-events:none}
+  .spin.spun .spin-hint{opacity:0}
+  .spin-badge{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:1.5px;
+    font-variant:small-caps;color:var(--faint);background:rgba(13,11,8,.6);padding:4px 9px}
+  .spin-cap{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin:-14px 0 24px}
+
   /* PERSONA cast */
   .banner{width:100%;border:1px solid var(--line);margin-bottom:24px;transition:filter .6s var(--ease)}
   .cast{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -514,6 +530,16 @@
   <section id="hook">
     <div class="shead">The Feature &nbsp;·&nbsp; <b>Hook — EV Conversion Kit</b></div>
     <p class="lead-para">A clamp-on electric drive kit that turns any standard bicycle electric — 30% performance boost, 30&nbsp;km range. Founded the effort at Dimension Six and led mechanical design from CAD to working prototype. <a href="https://www.hook.bike/about-us" target="_blank" rel="noopener">hook.bike ↗</a></p>
+
+    <div class="spin reveal" id="spin360">
+      <div class="spin-stage" id="spinStage">
+        <img id="spinImg" src="images/spin/f00.jpg" alt="Hook drive kit — 360° turntable view" draggable="false">
+        <span class="spin-badge">Turntable · SolidWorks render</span>
+        <span class="spin-hint" id="spinHint">↔ drag to spin</span>
+      </div>
+    </div>
+    <div class="spin-cap">The kit in 360° — grab and drag to rotate.</div>
+
     <div class="grid">
       <div class="art reveal"><div class="im"><img src="images/hook-hero.jpg" alt="Hook Daily kit mounted on a bicycle"></div>
         <div class="cap">Plate A — The Kit</div><h3>The Hook Daily Kit</h3>
@@ -527,6 +553,12 @@
       <div class="art reveal"><div class="im"><img src="images/hook-detail.jpg" alt="Hook drive roller detail"></div>
         <div class="cap">Plate D — Engagement</div><h3>Where the Power Meets the Road</h3>
         <p>Spring-loaded roller drive against the tyre — the mechanism behind the 30% boost.</p></div>
+      <div class="art reveal d1"><div class="im"><img src="images/hook-full.jpg" alt="Full bicycle with the Hook kit installed"></div>
+        <div class="cap">Plate E — In Context</div><h3>The Whole Machine</h3>
+        <p>The kit on a complete bike — the product as the rider actually sees it.</p></div>
+      <div class="art reveal d2"><div class="im"><img src="images/hook-hub.jpg" alt="Rear wheel hub and spokes detail render"></div>
+        <div class="cap">Plate F — Wheel &amp; Hub</div><h3>Built Around the Wheel</h3>
+        <p>Drive geometry resolved against the rear hub and spokes.</p></div>
     </div>
 
     <div class="shead" style="margin-top:30px">Production Drawings &nbsp;·&nbsp; <b>SolidWorks</b></div>
@@ -773,6 +805,27 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+  // ---- 360° spin viewer (drag to rotate the Hook kit) ----
+  (function(){
+    var wrap=document.getElementById('spin360'), stage=document.getElementById('spinStage'),
+        img=document.getElementById('spinImg'); if(!stage) return;
+    var N=30, cur=0, dragging=false, lastX=0, acc=0, frames=[];
+    for(var i=0;i<N;i++){frames.push('images/spin/f'+String(i).padStart(2,'0')+'.jpg');}
+    frames.forEach(function(s){var im=new Image(); im.src=s;});           // preload
+    function set(i){cur=((i%N)+N)%N; img.src=frames[cur];}
+    function down(x){dragging=true; lastX=x; acc=0; wrap.classList.add('spun');}
+    function move(x){ if(!dragging) return; acc+=(x-lastX); lastX=x;
+      var step=Math.max(12, stage.clientWidth/N);
+      while(Math.abs(acc)>=step){ if(acc<0){set(cur+1); acc+=step;} else {set(cur-1); acc-=step;} } }
+    function up(){dragging=false;}
+    stage.addEventListener('mousedown',function(e){down(e.clientX); e.preventDefault();});
+    window.addEventListener('mousemove',function(e){move(e.clientX);});
+    window.addEventListener('mouseup',up);
+    stage.addEventListener('touchstart',function(e){down(e.touches[0].clientX);},{passive:true});
+    stage.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
+    stage.addEventListener('touchend',up); stage.addEventListener('touchcancel',up);
+  })();
+
   // ---- detail content ----
   const G = {
     work:[
@@ -804,7 +857,13 @@
        body:['Motor, battery and controller live in a single self-contained module. The pipe-clamp mounting geometry was engineered to fit a range of frame diameters while carrying drive loads securely.']},
       {k:'Powertrain',t:'Where the Power Meets the Road',img:'images/hook-detail.jpg',
        meta:[['Mechanism','Spring-loaded roller'],['Output','+30% boost'],['Range','30 km']],
-       body:['A spring-loaded roller drives directly against the tyre. That engagement mechanism is what delivers the 30% performance boost and 30 km of range.']}
+       body:['A spring-loaded roller drives directly against the tyre. That engagement mechanism is what delivers the 30% performance boost and 30 km of range.']},
+      {k:'In Context',t:'The Whole Machine',img:'images/hook-full.jpg',
+       meta:[['View','Full product'],['Fit','Standard frame'],['State','Kit installed']],
+       body:['The complete bike with the Hook kit fitted — the product as the rider actually sees it, not just the module in isolation.']},
+      {k:'Wheel & Hub',t:'Built Around the Wheel',img:'images/hook-hub.jpg',
+       meta:[['Focus','Rear hub'],['Detail','Spokes & lacing'],['Discipline','Drive geometry']],
+       body:['A close render of the rear hub and spokes — the reference the drive geometry is resolved against.']}
     ],
     cad:[
       {k:'Plate I · SolidWorks',t:'Motor Couplers',img:'images/cad-couplers.jpg',draw:true,
