@@ -325,6 +325,12 @@
     border-radius:3px;transition:background .2s,color .2s}
   .pr-btn.ghost{background:#fff;color:#1c1c1c}
   .pr-btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+  .pr-cta{margin-top:34px;border-top:2px solid #1c1c1c;padding-top:22px;text-align:center}
+  .pr-cta-h{font-size:21px;font-weight:800;letter-spacing:.2px}
+  .pr-cta-d{font-size:13px;color:#444;max-width:640px;margin:8px auto 2px;line-height:1.55}
+  .pr-switch{margin-top:16px;font-size:12px}
+  .pr-switch a{color:var(--pink);text-decoration:none}
+  .pr-switch a:hover{text-decoration:underline}
   @media(max-width:560px){.pr-wrap{padding:40px 22px 80px}.pr-head h1{font-size:27px}
     .pr-jh{flex-direction:column;gap:0}.pr-jw{white-space:normal}}
 </style>
@@ -718,10 +724,16 @@
     <div class="pr-skill"><b>Operations &amp; Documentation:</b> Founder's Office Operations · Cross-Functional Coordination · Process &amp; Launch Documentation · Inventory &amp; Sample Tracking · GTM / Market Analysis</div>
     <div class="pr-skill"><b>Communication &amp; Tools:</b> Professional Communications · Stakeholder Management · Sales Proposals &amp; Pitch Decks · Advanced MS Office (PowerPoint, Excel, Word) · Google Workspace · Automation Tools (n8n, APIs)</div>
 
-    <div class="pr-actions">
-      <a class="pr-btn" href="YASH_JITENDRA_KOTHARI_Resume.pdf" download="Yash-Kothari-Resume.pdf">Download PDF ↓</a>
-      <a class="pr-btn ghost" href="YASH_JITENDRA_KOTHARI_Resume.pdf" target="_blank" rel="noopener">View PDF ↗</a>
-      <a class="pr-btn ghost" href="#" onclick="pick('fun');return false">Prefer the fun version? →</a>
+    <div class="pr-cta">
+      <div class="pr-cta-h">Let's talk.</div>
+      <p class="pr-cta-d">I'm looking for founder's-office, operations, and product roles where I can own launches end to end — sourcing to shipped. If that sounds like your team, I'd love to talk.</p>
+      <div class="pr-actions">
+        <a class="pr-btn" href="mailto:yashkothari010101@gmail.com?subject=Let's%20talk%20%E2%80%94%20a%20role%20on%20your%20team">Email Me</a>
+        <a class="pr-btn ghost" href="https://www.linkedin.com/in/yash-kothari-works/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="pr-btn ghost" href="YASH_JITENDRA_KOTHARI_Resume.pdf" download="Yash-Kothari-Resume.pdf">Download PDF ↓</a>
+        <a class="pr-btn ghost" href="YASH_JITENDRA_KOTHARI_Resume.pdf" target="_blank" rel="noopener">View PDF ↗</a>
+      </div>
+      <div class="pr-switch"><a href="#" onclick="pick('fun');return false">Prefer the fun version? →</a></div>
     </div>
   </div>
 </section>
@@ -739,8 +751,17 @@
     window.scrollTo(0,0);
     try{history.replaceState(null,'',location.pathname)}catch(e){}
   }
-  // deep-link: /#pro or /#fun opens straight into that mode
-  (function(){var h=(location.hash||'').replace('#','');if(h==='pro'||h==='fun')document.body.classList.add(h);})();
+  // Direct-link routing: recruiters get sent straight to the résumé, warm traffic sees the chooser.
+  // Accepts  #pro / #fun  and  ?pro / ?fun / ?recruiter / ?resume / ?cv / ?view=pro|fun
+  // (query params are used because some job-application forms strip the #hash from a shared link).
+  (function(){
+    var h=(location.hash||'').replace('#','').toLowerCase();
+    var q=(location.search||'').toLowerCase(), m='';
+    if(h==='pro'||h==='fun'){ m=h; }
+    else if(/[?&](pro|recruiter|resume|cv)([=&]|$)/.test(q)||/view=pro/.test(q)){ m='pro'; }
+    else if(/[?&]fun([=&]|$)/.test(q)||/view=fun/.test(q)){ m='fun'; }
+    if(m) document.body.classList.add(m);
+  })();
   // keyboard: while the chooser is up, 1 = fun, 2 = pro
   document.addEventListener('keydown',function(e){
     var gated=!document.body.classList.contains('fun')&&!document.body.classList.contains('pro');
