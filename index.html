@@ -10,10 +10,8 @@
     --rule:#cfc6b5; --line:#1a1712; --acc:#8f2d1e;
     --ease:cubic-bezier(.23,1,.32,1);
   }
-  @media (prefers-color-scheme: dark){
-    :root{ --paper:#14120e; --card:#191713; --ink:#ece6d8; --dim:#a89f8d; --faint:#7d7565;
-      --rule:#38332a; --line:#ece6d8; --acc:#e0776a; }
-  }
+  /* Always render the light off-white "newspaper" palette, regardless of OS theme.
+     (Dark auto-switch removed on request; the data-theme="dark" override stays available but unused.) */
   :root[data-theme="dark"]{ --paper:#14120e; --card:#191713; --ink:#ece6d8; --dim:#a89f8d; --faint:#7d7565; --rule:#38332a; --line:#ece6d8; --acc:#e0776a; }
   :root[data-theme="light"]{ --paper:#f6f2e9; --card:#fffdf7; --ink:#1a1712; --dim:#5c554a; --faint:#8b8375; --rule:#cfc6b5; --line:#1a1712; --acc:#8f2d1e; }
 
